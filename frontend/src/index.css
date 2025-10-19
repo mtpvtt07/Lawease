@@ -1,4 +1,14 @@
 @import "tailwindcss";
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
 /* Custom Animations */
 @layer utilities {
   .animate-gradient-move {
