@@ -33,12 +33,8 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <section className="py-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Frequently Asked Questions
-        </h2>
-
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div

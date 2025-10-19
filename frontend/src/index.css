@@ -20,3 +20,44 @@
     to { opacity: 1; transform: none; }
   }
 }
+
+/* Base scrollbar setup */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track (background behind the scrollbar thumb) */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 6px;
+}
+
+/* Thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--scrollbar-start), var(--scrollbar-end));
+  border-radius: 6px;
+}
+
+/* Hover effect for thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--scrollbar-hover-start), var(--scrollbar-hover-end));
+}
+
+/* Light mode variables */
+:root {
+  --scrollbar-track: #f0f0f0;
+  --scrollbar-start: #6b7280; /* gray-500 */
+  --scrollbar-end: #9ca3af;   /* gray-400 */
+  --scrollbar-hover-start: #4b5563; /* gray-600 */
+  --scrollbar-hover-end: #6b7280;   /* gray-500 */
+}
+
+/* Dark mode variables */
+.dark {
+  --scrollbar-track: #111827; /* gray-900 */
+  --scrollbar-start: #374151; /* gray-700 */
+  --scrollbar-end: #6b7280;   /* gray-500 */
+  --scrollbar-hover-start: #4b5563; /* gray-600 */
+  --scrollbar-hover-end: #9ca3af;   /* gray-400 */
+}
