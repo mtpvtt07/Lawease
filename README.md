@@ -15,54 +15,111 @@ LawEase is designed to make legal information and solutions accessible to everyo
 ## Tech Stack
 LawEase is built using the MERN stack:
 - **MongoDB:** Database for storing user, lawyer, and legal information.
-- **Express.js:** Backend framework for building RESTful APIs.
-- **React.js:** Frontend library for building a responsive and interactive user interface.
-- **Node.js:** Runtime environment for the backend server.
+# LawEase
 
-## Getting Started
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/echoAbhinav/LawEase.git
-   ```
-2. **Install dependencies:**
-   - For frontend:
-     ```bash
-     cd frontend
-     npm install
-     ```
-   - For backend:
-     ```bash
-     cd backend
-     npm install
-     ```
-3. **Run the project:**
-   - Start frontend:
-     ```bash
-     npm start
-     ```
-   - Start backend:
-     ```bash
-     npm start
-     ```
+Make legal information accessible, understandable and actionable — with a focus on underserved rural communities.
 
-### Flow Description
-1. **Terms & Conditions:** Users must agree before accessing the website.
-2. **Landing Page:** The first page users see, introducing the platform and its benefits.
-3. **Login/Register:** Secure authentication for new and returning users.
-4. **Home/Main Page:** Central hub for all features.
-   - **Search Major Category Issue:** Find legal topics, explore subcategories.
-     - Solutions in multiple regional languages
-     - Video content for clarity
-     - Find and connect with lawyers (with payment gateway)
-   - **Chat-Bot:** Get instant answers and guidance.
-   - **FAQ:** Common questions answered.
-   - **About Us/Contact Us:** Learn about the platform and reach out for support.
-   - **Newsletter:** Stay updated with legal news and platform updates.
-   - **User Dashboard:** Manage profile, saved solutions, and access support/helpdesk.
+## Table of contents
+- About
+- Key features
+- Tech stack
+- Quickstart (run locally)
+- Project structure
+- Development notes
+- Contributing
+- License & Code of conduct
+- Contact
+
+## About
+LawEase is a platform that helps people discover legal solutions to everyday problems. It organizes legal problems into categories and subcategories, explains laws in simple language (including regional languages), includes short video summaries, and connects users to legal professionals.
+
+The project aims to reduce friction for users in rural areas who may not have easy access to legal advice.
+
+## Key features
+- Categorized legal topics and subtopics for easy discovery
+- Simple-language explanations and regional language support
+- Short video summaries for selected topics
+- Lawyer / legal-firm directory and contact flow
+- Authentication, user dashboards and saved resources
+- Chat-bot helpers and FAQs
+
+## Tech stack
+- Frontend: React (Vite)
+- Backend: Node.js + Express
+- Database: MongoDB
+- Authentication: (JWT / session - depends on implementation)
+- Optional: Payment gateway for lawyer consultations
+
+> Note: This repository contains the frontend under `frontend/`. If you also maintain a backend, it should live under `backend/`.
+
+## Quickstart (development)
+These steps assume you have Node.js and npm installed.
+
+1. Clone the repo
+
+```powershell
+git clone https://github.com/echoAbhinav/LawEase.git
+cd LaweaseFork
+```
+
+2. Frontend (local dev)
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+3. Backend (if present)
+
+```powershell
+cd backend
+npm install
+npm start
+```
+
+Open the frontend URL printed by Vite (usually http://localhost:5173).
+
+## Project structure (important folders)
+- `frontend/` — React app (Vite). Key files:
+  - `src/main.jsx` — app entry
+  - `src/App.jsx` — root component
+  - `src/pages/` — page components (Landing, Login, Signup, Main)
+  - `src/components/` — reusable UI pieces (Navbar, HeroSection, Dashboard widgets)
+
+Other expected folders (if present):
+- `backend/` — Node/Express server
+- `scripts/`, `docs/`, or `infra/` — optional support files
+
+## Development notes
+- Keep UI components small and focused.
+- Store API URL and secrets in environment variables (use `.env` locally; never commit secrets).
+- Follow the existing linting rules in `frontend/eslint.config.js`.
+- Use the existing `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` for contribution rules.
 
 ## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for improvements or new features.
+Contributions are very welcome. A suggested workflow:
+
+1. Open an issue to discuss larger changes.
+2. Create a branch: `git checkout -b feat/short-description`.
+3. Run tests / lint and add unit tests for new logic where appropriate.
+4. Open a pull request describing the change.
+
+See `CONTRIBUTING.md` for more detail.
+
+## License & Code of conduct
+This repository includes `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md`. Add a LICENSE file if one is missing.
 
 ## Contact
-For questions or support, please contact the project maintainer via GitHub Issues.
+If you have questions or need help, open an issue on GitHub or reach out to the maintainers through the repository.
+
+---
+
+Thanks for improving access to legal help. If you want, I can also:
+- Add a short screenshot or GIF to the README
+- Add a minimal `frontend/README.md` with frontend-specific commands
+- Create a small dev script to start frontend + backend together
+
+If you'd like any of those, tell me which and I'll add them.
+Open the frontend URL printed by Vite (usually http://localhost:5173).
 
