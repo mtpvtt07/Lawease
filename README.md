@@ -45,29 +45,6 @@ LawEase is built using the MERN stack:
      npm start
      ```
 
-## Web Flow
-
-```mermaid
-flowchart TD
-    A[1. Terms & Conditions / Agree & Continue] --> M[1(a). Landing Page]
-    M --> B[2. Login / Register]
-    B --> C[3. Home / Main Page]
-    C --> D[3(a). Search Major Category Issue]
-    D --> D1[Subcategories]
-    D1 --> D2[i. Multi-Regional Language Solutions]
-    D1 --> D3[ii. Video Content]
-    D1 --> D4[iii. Find a Lawyer]
-    D4 --> D5[Payment Gateway]
-    C --> E[3(b). Chat-Bot]
-    C --> F[3(c). FAQ]
-    C --> G[3(d). About Us / Contact Us]
-    C --> H[3(e). Newsletter]
-    C --> I[3(f). User Dashboard]
-    I --> J[Profile Management]
-    I --> K[Saved Solutions]
-    I --> L[Support / Helpdesk]
-```
-
 ### Flow Description
 1. **Terms & Conditions:** Users must agree before accessing the website.
 2. **Landing Page:** The first page users see, introducing the platform and its benefits.
@@ -88,3 +65,4 @@ Contributions are welcome! Please open an issue or submit a pull request for imp
 
 ## Contact
 For questions or support, please contact the project maintainer via GitHub Issues.
+
