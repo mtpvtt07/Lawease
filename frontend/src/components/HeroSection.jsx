@@ -84,7 +84,7 @@ const ProfessionalNavbar = ({
             {[
               { name: "Home", href: "#home" },
               { name: "Services", href: "#services" },
-              { name: "Lawyers", href: "#lawyers" },
+             // { name: "Lawyers", href: "#lawyers" },
               { name: "About", href: "#about" },
               { name: 'FAQ', href: '#faq' }, // <- New section
               { name: "Contact", href: "#contact" },
@@ -862,7 +862,7 @@ export default function ProfessionalLawEaseLanding() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32">
+      <section id="contact" className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`rounded-3xl p-8 lg:p-16 text-center ${darkMode ? "bg-gray-900" : "bg-gray-100"}`}>
             <h2 className={`text-3xl lg:text-5xl font-bold mb-6 ${darkMode ? "text-white" : "text-black"}`}>

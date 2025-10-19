@@ -40,7 +40,7 @@ export default function Navbar({ language, setLanguage, mobileMenuOpen, setMobil
             {[
               { name: 'Home', href: '#home' },
               { name: 'Services', href: '#services' },
-              { name: 'Find Lawyers', href: '#lawyers' },
+             
               { name: 'About Us', href: '#about' },
               { name: 'FAQ', href: '#faq' }, // <- New section
               { name: 'Success Stories', href: '#testimonials' },
@@ -77,12 +77,14 @@ export default function Navbar({ language, setLanguage, mobileMenuOpen, setMobil
             </div>
 
             {/* Emergency Contact */}
-            <div className="hidden md:flex items-center">
+            <section id='contact'>
+              <div  className="hidden md:flex items-center">
               <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                 <Phone className="w-4 h-4 mr-2" />
                 <span>Emergency</span>
               </button>
             </div>
+            </section>
 
             {/* Mobile Menu Toggle */}
             <div className="flex lg:hidden">

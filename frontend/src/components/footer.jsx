@@ -4,7 +4,7 @@ import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from 'react
 
 const Footer = () => {
   return (
-    <footer className="lawease-footer">
+    <footer id='about'  className="lawease-footer">
       <div className="lawease-footer-container">
         {/* Brand Section */}
         <div className="lawease-footer-section lawease-brand-section">

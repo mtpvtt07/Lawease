@@ -33,7 +33,7 @@ export default function FAQSection({ darkMode = true }) {
   };
 
   return (
-    <section className={`py-8 ${darkMode ? "text-gray-100" : "text-gray-900"}`}>
+    <section id="faq" className={`py-8 ${darkMode ? "text-gray-100" : "text-gray-900"}`}>
       <div className="max-w-3xl mx-auto px-6">
         <div className="space-y-4">
           {faqs.map((faq, index) => (
