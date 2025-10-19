@@ -25,7 +25,7 @@ const faqs = [
   },
 ];
 
-export default function FAQSection() {
+export default function FAQSection({ darkMode = true }) {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -33,17 +33,21 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-lg">
+    <section className={`py-8 ${darkMode ? "text-gray-100" : "text-gray-900"}`}>
       <div className="max-w-3xl mx-auto px-6">
         <div className="space-y-4">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden"
+              className={`border rounded-lg overflow-hidden ${
+                darkMode ? "border-gray-700" : "border-gray-300"
+              }`}
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center text-left p-5 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className={`w-full flex justify-between items-center text-left p-5 transition-colors ${
+                  darkMode ? "hover:bg-gray-800" : "hover:bg-gray-100"
+                }`}
               >
                 <span className="font-medium text-lg">{faq.question}</span>
                 <motion.div
@@ -61,7 +65,9 @@ export default function FAQSection() {
                     animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="px-5 pb-5 text-gray-600 dark:text-gray-300"
+                    className={`px-5 pb-5 ${
+                      darkMode ? "text-gray-300" : "text-gray-600"
+                    }`}
                   >
                     {faq.answer}
                   </motion.div>

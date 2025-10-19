@@ -846,6 +846,21 @@ export default function ProfessionalLawEaseLanding() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 lg:mb-20">
+            <h2 className={`text-4xl lg:text-6xl font-bold mb-6 ${darkMode ? "text-white" : "text-black"}`}>
+              Frequently Asked <span className={darkMode ? "text-gray-400" : "text-gray-600"}>Questions</span>
+            </h2>
+            <p className={`text-xl lg:text-2xl max-w-3xl mx-auto ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+              Find answers to common questions about LawEase
+            </p>
+          </div>
+          <FAQSection darkMode={darkMode} />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
