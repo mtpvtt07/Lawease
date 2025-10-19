@@ -42,6 +42,7 @@ export default function Navbar({ language, setLanguage, mobileMenuOpen, setMobil
               { name: 'Services', href: '#services' },
               { name: 'Find Lawyers', href: '#lawyers' },
               { name: 'About Us', href: '#about' },
+              { name: 'FAQ', href: '#faq' }, // <- New section
               { name: 'Success Stories', href: '#testimonials' },
               { name: 'Contact', href: '#contact' }
             ].map((item) => (
