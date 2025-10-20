@@ -1,4 +1,5 @@
 
+
 # dependencies
 node_modules/
 
@@ -20,3 +21,9 @@ yarn-error.log*
 .idea/
 .DS_Store
 *.log
+
+node_modules
+.gitignore
+dist
+.env
+

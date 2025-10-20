@@ -31,9 +31,13 @@ import {
   Handshake,
   ChevronRight,
   Sun,
-  Moon,
+  Moon
 } from "lucide-react";
 import { Link } from "react-router-dom";
+
+} from "lucide-react"
+import { Link } from "react-router-dom"
+import FAQSection from './FAQSection';
 
 const LANGUAGES = [
   { code: "en", label: "English", flag: "🇬🇧" },
@@ -198,6 +202,17 @@ export default function ProfessionalLawEaseLanding() {
   const [scrollY, setScrollY] = useState(0);
   const [activeFeature, setActiveFeature] = useState(0);
   const [darkMode, setDarkMode] = useState(true);
+=======
+import Navbar from './Navbar'
+
+export default function ProfessionalLawEaseLanding() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
+  const [activeFeature, setActiveFeature] = useState(0)
+  const [darkMode, setDarkMode] = useState(true)
+
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -364,14 +379,11 @@ export default function ProfessionalLawEaseLanding() {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 ${
-        darkMode ? "bg-black text-white" : "bg-white text-black"
-      }`}
+      className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-black"
+        }`}
     >
-      {/* Professional Navigation */}
-      <ProfessionalNavbar
-        language={language}
-        setLanguage={setLanguage}
+      {/* Navigation */}
+      <Navbar
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         scrollY={scrollY}
@@ -392,17 +404,23 @@ export default function ProfessionalLawEaseLanding() {
               { name: "Services", href: "#services", icon: Shield },
               { name: "Find Lawyers", href: "#lawyers", icon: Users },
               { name: "About Us", href: "#about", icon: Award },
+              { name: 'FAQ', href: '#faq', icon: BookOpen }, // <- New section
               { name: "Success Stories", href: "#testimonials", icon: Star },
               { name: "Contact", href: "#contact", icon: Phone },
             ].map((item) => (
               <a
                 key={item.name}
                 href={item.href}
+
                 className={`flex items-center gap-4 text-2xl font-semibold transition-colors duration-200 ${
                   darkMode
                     ? "text-white hover:text-gray-300"
                     : "text-black hover:text-gray-700"
                 }`}
+
+                className={`flex items-center gap-4 text-2xl font-semibold transition-colors duration-200 ${darkMode ? "text-white hover:text-gray-300" : "text-black hover:text-gray-700"
+                  }`}
+
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <item.icon className="w-7 h-7" />
@@ -419,6 +437,7 @@ export default function ProfessionalLawEaseLanding() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-screen">
             {/* Left Content */}
             <div
+
               className={`space-y-8 lg:space-y-12 transition-all duration-1000 ${
                 isVisible
                   ? "opacity-100 translate-x-0"
@@ -432,6 +451,15 @@ export default function ProfessionalLawEaseLanding() {
                     ? "bg-gray-900 border-gray-700 text-gray-300"
                     : "bg-gray-50 border-gray-200 text-gray-700"
                 }`}
+
+              className={`space-y-8 lg:space-y-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
+                }`}
+            >
+              {/* Badge */}
+              <div
+                className={`inline-flex items-center gap-3 px-6 py-3 rounded-full text-sm lg:text-base font-medium border ${darkMode ? "bg-gray-900 border-gray-700 text-gray-300" : "bg-gray-50 border-gray-200 text-gray-700"
+                  }`}
+
               >
                 <Star className="w-5 h-5 fill-current" />
                 <span>India's #1 Legal Platform</span>
@@ -455,9 +483,8 @@ export default function ProfessionalLawEaseLanding() {
                 </h1>
 
                 <p
-                  className={`text-xl lg:text-2xl xl:text-3xl font-medium leading-relaxed ${
-                    darkMode ? "text-gray-300" : "text-gray-700"
-                  }`}
+                  className={`text-xl lg:text-2xl xl:text-3xl font-medium leading-relaxed ${darkMode ? "text-gray-300" : "text-gray-700"
+                    }`}
                 >
                   {currentContent.subtitle}
                 </p>
@@ -465,9 +492,8 @@ export default function ProfessionalLawEaseLanding() {
 
               {/* Description */}
               <p
-                className={`text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-2xl ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                }`}
+                className={`text-lg lg:text-xl xl:text-2xl leading-relaxed max-w-2xl ${darkMode ? "text-gray-400" : "text-gray-600"
+                  }`}
               >
                 {currentContent.description}
               </p>
@@ -475,32 +501,35 @@ export default function ProfessionalLawEaseLanding() {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <button
+
                   className={`group px-8 py-4 font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3 ${
                     darkMode
                       ? "bg-white text-black hover:bg-gray-100"
                       : "bg-black text-white hover:bg-gray-800"
                   }`}
+
+                  className={`group px-8 py-4 font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3 ${darkMode ? "bg-white text-black hover:bg-gray-100" : "bg-black text-white hover:bg-gray-800"
+                    }`}
+
                 >
                   {currentContent.cta}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <Link
                   to="/login"
-                  className={`px-8 py-4 border-2 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${
-                    darkMode
-                      ? "border-gray-600 text-gray-300 hover:bg-gray-900"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`px-8 py-4 border-2 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${darkMode
+                    ? "border-gray-600 text-gray-300 hover:bg-gray-900"
+                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className={`px-8 py-4 border-2 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${
-                    darkMode
-                      ? "border-gray-600 text-gray-300 hover:bg-gray-900"
-                      : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                  }`}
+                  className={`px-8 py-4 border-2 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${darkMode
+                    ? "border-gray-600 text-gray-300 hover:bg-gray-900"
+                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                 >
                   Sign Up
                 </Link>
@@ -549,16 +578,14 @@ export default function ProfessionalLawEaseLanding() {
                 {Object.entries(currentContent.stats).map(([key, value]) => (
                   <div key={key} className="text-center group cursor-pointer">
                     <div
-                      className={`text-3xl lg:text-4xl font-bold mb-2 group-hover:scale-110 transition-transform ${
-                        darkMode ? "text-white" : "text-black"
-                      }`}
+                      className={`text-3xl lg:text-4xl font-bold mb-2 group-hover:scale-110 transition-transform ${darkMode ? "text-white" : "text-black"
+                        }`}
                     >
                       {value}
                     </div>
                     <div
-                      className={`text-sm lg:text-base capitalize font-medium ${
-                        darkMode ? "text-gray-400" : "text-gray-600"
-                      }`}
+                      className={`text-sm lg:text-base capitalize font-medium ${darkMode ? "text-gray-400" : "text-gray-600"
+                        }`}
                     >
                       {key.replace(/([A-Z])/g, " $1").trim()}
                     </div>
@@ -569,20 +596,30 @@ export default function ProfessionalLawEaseLanding() {
 
             {/* Right Content */}
             <div
+
               className={`relative transition-all duration-1000 delay-300 ${
                 isVisible
                   ? "opacity-100 translate-x-0"
                   : "opacity-0 translate-x-10"
               }`}
+
+              className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+                }`}
+
             >
               {/* Main Image Container */}
               <div className="relative">
                 <div
+
                   className={`relative rounded-3xl p-3 border shadow-2xl ${
                     darkMode
                       ? "bg-gray-900/50 border-gray-700"
                       : "bg-gray-50/50 border-gray-200"
                   } backdrop-blur-sm`}
+
+                  className={`relative rounded-3xl p-3 border shadow-2xl ${darkMode ? "bg-gray-900/50 border-gray-700" : "bg-gray-50/50 border-gray-200"
+                    } backdrop-blur-sm`}
+
                 >
                   <img
                     src={currentContent.image || "/placeholder.svg"}
@@ -593,14 +630,12 @@ export default function ProfessionalLawEaseLanding() {
                   {/* Video Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <button
-                      className={`w-20 h-20 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group ${
-                        darkMode ? "bg-white/90" : "bg-black/90"
-                      }`}
+                      className={`w-20 h-20 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform group ${darkMode ? "bg-white/90" : "bg-black/90"
+                        }`}
                     >
                       <Play
-                        className={`w-8 h-8 ml-1 group-hover:scale-110 transition-transform ${
-                          darkMode ? "text-black" : "text-white"
-                        }`}
+                        className={`w-8 h-8 ml-1 group-hover:scale-110 transition-transform ${darkMode ? "text-black" : "text-white"
+                          }`}
                       />
                     </button>
                   </div>
@@ -608,11 +643,16 @@ export default function ProfessionalLawEaseLanding() {
 
                 {/* Floating Success Card */}
                 <div
+
                   className={`absolute -top-8 -left-8 rounded-2xl p-6 shadow-2xl border animate-bounce max-w-xs ${
                     darkMode
                       ? "bg-gray-900/95 border-gray-700"
                       : "bg-white/95 border-gray-200"
                   } backdrop-blur-md`}
+
+                  className={`absolute -top-8 -left-8 rounded-2xl p-6 shadow-2xl border animate-bounce max-w-xs ${darkMode ? "bg-gray-900/95 border-gray-700" : "bg-white/95 border-gray-200"
+                    } backdrop-blur-md`}
+
                 >
                   <div className="flex items-center gap-4 mb-3">
                     <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
@@ -646,11 +686,15 @@ export default function ProfessionalLawEaseLanding() {
 
                 {/* Floating Testimonial */}
                 <div
+
                   className={`absolute -bottom-8 -right-8 rounded-2xl p-6 shadow-2xl border max-w-sm ${
                     darkMode
                       ? "bg-gray-900/95 border-gray-700"
                       : "bg-white/95 border-gray-200"
                   } backdrop-blur-md`}
+         className={`absolute -bottom-8 -right-8 rounded-2xl p-6 shadow-2xl border max-w-sm ${darkMode ? "bg-gray-900/95 border-gray-700" : "bg-white/95 border-gray-200"
+                    } backdrop-blur-md`}
+
                 >
                   <div className="flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
@@ -704,9 +748,8 @@ export default function ProfessionalLawEaseLanding() {
             {stats.map((stat, index) => (
               <div key={index} className="text-center group">
                 <div
-                  className={`w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform ${
-                    darkMode ? "bg-gray-800" : "bg-gray-100"
-                  }`}
+                  className={`w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform ${darkMode ? "bg-gray-800" : "bg-gray-100"
+                    }`}
                 >
                   <stat.icon
                     className={`w-8 h-8 lg:w-10 lg:h-10 ${
@@ -715,11 +758,16 @@ export default function ProfessionalLawEaseLanding() {
                   />
                 </div>
                 <div
+
                   className={`text-3xl lg:text-4xl font-bold mb-2 transition-colors ${
                     darkMode
                       ? "text-white group-hover:text-gray-300"
                       : "text-black group-hover:text-gray-700"
                   }`}
+
+                  className={`text-3xl lg:text-4xl font-bold mb-2 transition-colors ${darkMode ? "text-white group-hover:text-gray-300" : "text-black group-hover:text-gray-700"
+                    }`}
+
                 >
                   {stat.number}
                 </div>
@@ -764,16 +812,14 @@ export default function ProfessionalLawEaseLanding() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group rounded-3xl p-8 border transition-all duration-300 hover:scale-105 ${
-                  darkMode
-                    ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
-                    : "bg-gray-50/50 border-gray-200 hover:border-gray-300"
-                } backdrop-blur-sm`}
+                className={`group rounded-3xl p-8 border transition-all duration-300 hover:scale-105 ${darkMode
+                  ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
+                  : "bg-gray-50/50 border-gray-200 hover:border-gray-300"
+                  } backdrop-blur-sm`}
               >
                 <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${
-                    darkMode ? "bg-white" : "bg-black"
-                  }`}
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${darkMode ? "bg-white" : "bg-black"
+                    }`}
                 >
                   <service.icon
                     className={`w-8 h-8 ${
@@ -782,11 +828,16 @@ export default function ProfessionalLawEaseLanding() {
                   />
                 </div>
                 <h3
+
                   className={`text-2xl font-bold mb-4 transition-colors ${
                     darkMode
                       ? "text-white group-hover:text-gray-300"
                       : "text-black group-hover:text-gray-700"
                   }`}
+
+                  className={`text-2xl font-bold mb-4 transition-colors ${darkMode ? "text-white group-hover:text-gray-300" : "text-black group-hover:text-gray-700"
+                    }`}
+
                 >
                   {service.title}
                 </h3>
@@ -806,9 +857,8 @@ export default function ProfessionalLawEaseLanding() {
                     {service.cases} cases handled
                   </span>
                   <ChevronRight
-                    className={`w-5 h-5 group-hover:translate-x-1 transition-transform ${
-                      darkMode ? "text-gray-400" : "text-gray-600"
-                    }`}
+                    className={`w-5 h-5 group-hover:translate-x-1 transition-transform ${darkMode ? "text-gray-400" : "text-gray-600"
+                      }`}
                   />
                 </div>
               </div>
@@ -846,6 +896,7 @@ export default function ProfessionalLawEaseLanding() {
                   <div
                     key={index}
                     onClick={() => setActiveFeature(index)}
+
                     className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${
                       activeFeature === index
                         ? darkMode
@@ -878,10 +929,41 @@ export default function ProfessionalLawEaseLanding() {
                               ? "text-gray-300"
                               : "text-gray-600"
                           }`}
+         className={`p-6 rounded-2xl cursor-pointer transition-all duration-300 border ${activeFeature === index
+                      ? darkMode
+                        ? "bg-gray-800/50 border-gray-600"
+                        : "bg-gray-100/50 border-gray-300"
+                      : darkMode
+                        ? "bg-gray-900/30 hover:bg-gray-800/30 border-gray-800"
+                        : "bg-gray-50/30 hover:bg-gray-100/30 border-gray-200"
+                      }`}
+                  >
+                    <div className="flex items-start gap-6">
+                      <div
+                        className={`w-14 h-14 rounded-xl flex items-center justify-center ${activeFeature === index
+                          ? darkMode
+                            ? "bg-white"
+                            : "bg-black"
+                          : darkMode
+                            ? "bg-gray-700"
+                            : "bg-gray-200"
+                          }`}
+                      >
+                        <feature.icon
+                          className={`w-6 h-6 ${activeFeature === index
+                            ? darkMode
+                              ? "text-black"
+                              : "text-white"
+                            : darkMode
+                              ? "text-gray-300"
+                              : "text-gray-600"
+                            }`}
+
                         />
                       </div>
                       <div>
                         <h3
+
                           className={`text-xl lg:text-2xl font-bold mb-2 ${
                             activeFeature === index
                               ? darkMode
@@ -891,10 +973,21 @@ export default function ProfessionalLawEaseLanding() {
                               ? "text-gray-300"
                               : "text-gray-700"
                           }`}
+
+                          className={`text-xl lg:text-2xl font-bold mb-2 ${activeFeature === index
+                            ? darkMode
+                              ? "text-white"
+                              : "text-black"
+                            : darkMode
+                              ? "text-gray-300"
+                              : "text-gray-700"
+                            }`}
+
                         >
                           {feature.title}
                         </h3>
                         <p
+
                           className={`text-lg ${
                             activeFeature === index
                               ? darkMode
@@ -904,6 +997,16 @@ export default function ProfessionalLawEaseLanding() {
                               ? "text-gray-500"
                               : "text-gray-500"
                           }`}
+
+                          className={`text-lg ${activeFeature === index
+                            ? darkMode
+                              ? "text-gray-300"
+                              : "text-gray-600"
+                            : darkMode
+                              ? "text-gray-500"
+                              : "text-gray-500"
+                            }`}
+
                         >
                           {feature.description}
                         </p>
@@ -928,11 +1031,16 @@ export default function ProfessionalLawEaseLanding() {
 
             <div className="relative">
               <div
+
                 className={`relative rounded-3xl p-8 border shadow-2xl h-full ${
                   darkMode
                     ? "bg-gray-900/50 border-gray-700"
                     : "bg-gray-50/50 border-gray-200"
                 } backdrop-blur-sm`}
+
+                className={`relative rounded-3xl p-8 border shadow-2xl h-full ${darkMode ? "bg-gray-900/50 border-gray-700" : "bg-gray-50/50 border-gray-200"
+                  } backdrop-blur-sm`}
+
               >
                 <div className="aspect-w-16 aspect-h-9 w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden">
                   <img
@@ -943,15 +1051,13 @@ export default function ProfessionalLawEaseLanding() {
                 </div>
 
                 <div
-                  className={`absolute -bottom-6 -right-6 rounded-2xl p-6 shadow-2xl w-3/4 ${
-                    darkMode ? "bg-gray-800" : "bg-gray-100"
-                  }`}
+                  className={`absolute -bottom-6 -right-6 rounded-2xl p-6 shadow-2xl w-3/4 ${darkMode ? "bg-gray-800" : "bg-gray-100"
+                    }`}
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className={`w-14 h-14 rounded-xl flex items-center justify-center ${
-                        darkMode ? "bg-white" : "bg-black"
-                      }`}
+                      className={`w-14 h-14 rounded-xl flex items-center justify-center ${darkMode ? "bg-white" : "bg-black"
+                        }`}
                     >
                       <Zap
                         className={`w-6 h-6 ${
@@ -979,17 +1085,21 @@ export default function ProfessionalLawEaseLanding() {
                 </div>
 
                 <div
+
                   className={`absolute -top-6 -left-6 rounded-2xl p-6 shadow-2xl w-3/4 ${
                     darkMode
                       ? "bg-gray-900/95 border-gray-700"
                       : "bg-white/95 border-gray-200"
                   } backdrop-blur-md border`}
+
+                  className={`absolute -top-6 -left-6 rounded-2xl p-6 shadow-2xl w-3/4 ${darkMode ? "bg-gray-900/95 border-gray-700" : "bg-white/95 border-gray-200"
+                    } backdrop-blur-md border`}
+
                 >
                   <div className="flex items-center gap-4">
                     <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                        darkMode ? "bg-white" : "bg-black"
-                      }`}
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${darkMode ? "bg-white" : "bg-black"
+                        }`}
                     >
                       <MessageSquare
                         className={`w-5 h-5 ${
@@ -1054,11 +1164,10 @@ export default function ProfessionalLawEaseLanding() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`group rounded-3xl p-8 border transition-all duration-300 ${
-                  darkMode
-                    ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
-                    : "bg-white/50 border-gray-200 hover:border-gray-300"
-                } backdrop-blur-sm`}
+                className={`group rounded-3xl p-8 border transition-all duration-300 ${darkMode
+                  ? "bg-gray-900/50 border-gray-700 hover:border-gray-600"
+                  : "bg-white/50 border-gray-200 hover:border-gray-300"
+                  } backdrop-blur-sm`}
               >
                 <div className="flex items-center gap-1 mb-6">
                   {[...Array(testimonial.rating)].map((_, i) => (
@@ -1076,9 +1185,8 @@ export default function ProfessionalLawEaseLanding() {
                   "{testimonial.text}"
                 </p>
                 <div
-                  className={`flex items-center gap-4 border-t pt-6 ${
-                    darkMode ? "border-gray-700" : "border-gray-200"
-                  }`}
+                  className={`flex items-center gap-4 border-t pt-6 ${darkMode ? "border-gray-700" : "border-gray-200"
+                    }`}
                 >
                   <img
                     src={testimonial.image || "/placeholder.svg"}
@@ -1115,6 +1223,21 @@ export default function ProfessionalLawEaseLanding() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section id="faq" className="py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 lg:mb-20">
+            <h2 className={`text-4xl lg:text-6xl font-bold mb-6 ${darkMode ? "text-white" : "text-black"}`}>
+              Frequently Asked <span className={darkMode ? "text-gray-400" : "text-gray-600"}>Questions</span>
+            </h2>
+            <p className={`text-xl lg:text-2xl max-w-3xl mx-auto ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+              Find answers to common questions about LawEase
+            </p>
+          </div>
+          <FAQSection darkMode={darkMode} />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1139,21 +1262,25 @@ export default function ProfessionalLawEaseLanding() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <button
+
                 className={`px-8 py-4 font-bold text-lg rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3 ${
                   darkMode
                     ? "bg-white text-black hover:bg-gray-100"
                     : "bg-black text-white hover:bg-gray-800"
                 }`}
+
+                className={`px-8 py-4 font-bold text-lg rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-3 ${darkMode ? "bg-white text-black hover:bg-gray-100" : "bg-black text-white hover:bg-gray-800"
+                  }`}
+
               >
                 <span>Get Free Consultation</span>
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
-                className={`px-8 py-4 border-2 font-semibold text-lg rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${
-                  darkMode
-                    ? "border-gray-600 text-gray-300 hover:bg-gray-800"
-                    : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                }`}
+                className={`px-8 py-4 border-2 font-semibold text-lg rounded-xl transition-all duration-300 flex items-center justify-center gap-3 ${darkMode
+                  ? "border-gray-600 text-gray-300 hover:bg-gray-800"
+                  : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                  }`}
               >
                 <Phone className="w-6 h-6" />
                 <span>Call Now: 1800-LAW-EASE</span>
@@ -1162,6 +1289,7 @@ export default function ProfessionalLawEaseLanding() {
           </div>
         </div>
       </section>
+
 
       {/* Footer */}
       {/* <footer
@@ -1300,6 +1428,7 @@ export default function ProfessionalLawEaseLanding() {
           </div>
         </div>
       </footer>
+
     </div>
   )
 } */}
