@@ -1,4 +1,5 @@
 // used for database connection and initialization 
+// connects to MongoDB using mongoose 
 import mongoose from "mongoose";
 
 import { DB_NAME } from "../constants.js";
