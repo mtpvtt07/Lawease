@@ -49,17 +49,12 @@ const LANGUAGES = [
 
 import Navbar from './Navbar'
 
-export default function ProfessionalLawEaseLanding() {
+export default function ProfessionalLawEaseLanding({ darkMode, toggleDarkMode }) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [activeFeature, setActiveFeature] = useState(0)
-  const [darkMode, setDarkMode] = useState(true)
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
 
   const heroContent = [
     {

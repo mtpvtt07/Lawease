@@ -2,9 +2,9 @@ import React from 'react';
 import './footer.css';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa';
 
-const Footer = () => {
+const Footer = ({ darkMode = false }) => {
   return (
-    <footer className="lawease-footer">
+    <footer className={`lawease-footer ${darkMode ? 'dark' : ''}`}>
       <div className="lawease-footer-container">
         {/* Brand Section */}
         <div className="lawease-footer-section lawease-brand-section">

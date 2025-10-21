@@ -1,7 +1,43 @@
+/* Footer Theme Variables */
+:root {
+  /* Light mode footer variables */
+  --footer-bg: #f8fafc;
+  --footer-bg-bottom: #f1f5f9;
+  --footer-text-primary: #1e293b;
+  --footer-text-secondary: #475569;
+  --footer-text-muted: #64748b;
+  --footer-border: #e2e8f0;
+  --footer-accent: #3b82f6;
+  --footer-accent-hover: #2563eb;
+  --footer-social-bg: #e2e8f0;
+  --footer-social-hover: #3b82f6;
+  --footer-input-bg: #ffffff;
+  --footer-input-border: #d1d5db;
+  --footer-input-focus: #3b82f6;
+  --footer-logo-bg: rgba(59, 130, 246, 0.1);
+}
+
+.dark {
+  /* Dark mode footer variables */
+  --footer-bg: #080c14;
+  --footer-bg-bottom: #060a10;
+  --footer-text-primary: #e8eef2;
+  --footer-text-secondary: #b8c9d4;
+  --footer-text-muted: #9fb3c0;
+  --footer-border: rgba(255, 255, 255, 0.15);
+  --footer-accent: #3b7ea1;
+  --footer-accent-hover: #4a90bd;
+  --footer-social-bg: rgba(255, 255, 255, 0.1);
+  --footer-social-hover: #3b7ea1;
+  --footer-input-bg: rgba(255, 255, 255, 0.08);
+  --footer-input-border: rgba(255, 255, 255, 0.2);
+  --footer-input-focus: #3b7ea1;
+  --footer-logo-bg: rgba(255, 255, 255, 0.12);
+}
 
 .lawease-footer {
-  background: #080c14;
-  color: #e8eef2;
+  background: var(--footer-bg);
+  color: var(--footer-text-primary);
   padding: 60px 20px 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   width: 100%;
@@ -9,6 +45,7 @@
   margin: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .lawease-footer * {
@@ -38,35 +75,39 @@
 
 .lawease-logo-icon {
   font-size: 36px;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--footer-logo-bg);
   padding: 10px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 .lawease-footer-logo h2 {
   font-size: 24px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--footer-text-primary);
   margin: 0;
   letter-spacing: -0.5px;
+  transition: color 0.3s ease;
 }
 
 .lawease-tagline {
-  color: #b8c9d4;
+  color: var(--footer-text-secondary);
   font-size: 16px;
   margin: 0 0 16px 0;
   font-weight: 400;
   font-style: normal;
+  transition: color 0.3s ease;
 }
 
 .lawease-description {
   font-size: 16px;
   line-height: 1.6;
-  color: #9fb3c0;
+  color: var(--footer-text-muted);
   margin-bottom: 24px;
+  transition: color 0.3s ease;
 }
 
 /* Social Media Icons */
@@ -79,34 +120,36 @@
 .lawease-social-icons a {
   width: 42px;
   height: 42px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--footer-social-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: var(--footer-text-primary);
   font-size: 19px;
   transition: all 0.3s ease;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--footer-border);
 }
 
 .lawease-social-icons a:hover {
-  background: #3b7ea1;
+  background: var(--footer-social-hover);
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(59, 126, 161, 0.4);
-  border-color: #3b7ea1;
+  border-color: var(--footer-social-hover);
+  color: white;
 }
 
 /* Footer Sections */
 .lawease-footer-section h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--footer-text-primary);
   margin-bottom: 20px;
   position: relative;
   padding-bottom: 12px;
   letter-spacing: 0.3px;
+  transition: color 0.3s ease;
 }
 
 .lawease-footer-section h3::after {
@@ -116,8 +159,9 @@
   bottom: 0;
   width: 35px;
   height: 3px;
-  background: linear-gradient(90deg, #3b7ea1, transparent);
+  background: linear-gradient(90deg, var(--footer-accent), transparent);
   border-radius: 2px;
+  transition: background 0.3s ease;
 }
 
 .lawease-footer-section ul {
@@ -132,7 +176,7 @@
 
 .lawease-footer-section ul li a,
 .lawease-footer-section ul li span {
-  color: #b0c4d1;
+  color: var(--footer-text-secondary);
   text-decoration: none;
   font-size: 13px;
   transition: all 0.3s ease;
@@ -140,7 +184,7 @@
 }
 
 .lawease-footer-section ul li a:hover {
-  color: #7ec4e8;
+  color: var(--footer-accent);
   padding-left: 5px;
 }
 
@@ -161,14 +205,16 @@
 .lawease-newsletter-section {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--footer-border);
+  transition: border-color 0.3s ease;
 }
 
 .lawease-newsletter-text {
   font-size: 13px;
-  color: #b0c4d1;
+  color: var(--footer-text-secondary);
   margin-bottom: 10px;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .lawease-newsletter-form {
@@ -179,30 +225,31 @@
 .lawease-newsletter-form input {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--footer-input-border);
+  background: var(--footer-input-bg);
   border-radius: 6px;
-  color: #ffffff;
+  color: var(--footer-text-primary);
   font-size: 14px;
   outline: none;
   transition: all 0.3s ease;
 }
 
 .lawease-newsletter-form input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--footer-text-muted);
 }
 
 .lawease-newsletter-form input:focus {
-  border-color: #3b7ea1;
-  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--footer-input-focus);
+  background: var(--footer-input-bg);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .lawease-newsletter-form button {
   padding: 10px 18px;
-  background: #3b7ea1;
+  background: var(--footer-accent);
   border: none;
   border-radius: 6px;
-  color: #ffffff;
+  color: white;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
@@ -210,15 +257,16 @@
 }
 
 .lawease-newsletter-form button:hover {
-  background: #4a90bd;
+  background: var(--footer-accent-hover);
   transform: translateX(2px);
 }
 
 /* Bottom Bar */
 .lawease-footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: 1px solid var(--footer-border);
   padding: 24px 20px;
-  background: #060a10;
+  background: var(--footer-bg-bottom);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .lawease-bottom-container {
@@ -231,9 +279,10 @@
 }
 
 .lawease-copyright {
-  color: #93a8b5;
+  color: var(--footer-text-muted);
   font-size: 14px;
   margin: 0;
+  transition: color 0.3s ease;
 }
 
 .lawease-legal-links {
@@ -244,25 +293,27 @@
 }
 
 .lawease-legal-links a {
-  color: #b0c4d1;
+  color: var(--footer-text-secondary);
   text-decoration: none;
   font-size: 13px;
   transition: color 0.3s ease;
 }
 
 .lawease-legal-links a:hover {
-  color: #7ec4e8;
+  color: var(--footer-accent);
 }
 
 .lawease-separator {
-  color: #6b8494;
+  color: var(--footer-text-muted);
+  transition: color 0.3s ease;
 }
 
 .lawease-tagline-bottom {
-  color: #93a8b5;
+  color: var(--footer-text-muted);
   font-size: 13px;
   margin: 0;
   font-style: italic;
+  transition: color 0.3s ease;
 }
 
 /* Responsive Design */
