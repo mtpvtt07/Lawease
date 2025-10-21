@@ -48,8 +48,10 @@ const LANGUAGES = [
 ]
 
 import Navbar from './Navbar'
+import { useTheme } from '../contexts/ThemeContext'
 
-export default function ProfessionalLawEaseLanding({ darkMode, toggleDarkMode }) {
+export default function ProfessionalLawEaseLanding() {
+  const { darkMode, toggleDarkMode } = useTheme()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

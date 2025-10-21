@@ -1,26 +1,34 @@
-import { useState } from 'react';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import OtpPage from './pages/OtpPage';
+import MainPage from './pages/MainPage';
 import Footer from './components/footer';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import { Routes, Route } from 'react-router-dom';
 
-function App() {
-  const [darkMode, setDarkMode] = useState(true);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+function AppContent() {
+  const { darkMode } = useTheme();
 
   return (
     <>
       <Routes>
-        <Route path="/" element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/otp" element={<OtpPage />} />
+        <Route path="/main" element={<MainPage />} />
       </Routes>
-      <Footer darkMode={darkMode} />
+      <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 

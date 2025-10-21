@@ -2,20 +2,17 @@
 
 import { useState } from "react"
 import { Mail, Lock, ArrowRight, Shield, AlertCircle, Sun, Moon, Eye, EyeOff, Phone } from 'lucide-react'
+import { useTheme } from '../../contexts/ThemeContext'
 
 export default function FullScreenLogin() {
+  const { darkMode, toggleDarkMode } = useTheme()
   const [authMethod, setAuthMethod] = useState("email")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [darkMode, setDarkMode] = useState(true)
   const [showPassword, setShowPassword] = useState(false)
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()

@@ -1,8 +1,11 @@
 import React from 'react';
 import './footer.css';
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaYoutube } from 'react-icons/fa';
+import { useTheme } from '../contexts/ThemeContext';
 
-const Footer = ({ darkMode = false }) => {
+const Footer = () => {
+  const { darkMode } = useTheme();
+  
   return (
     <footer className={`lawease-footer ${darkMode ? 'dark' : ''}`}>
       <div className="lawease-footer-container">

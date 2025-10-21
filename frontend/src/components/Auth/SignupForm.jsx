@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { User, Phone, ChevronDown, Shield, AlertCircle, Sun, Moon, ArrowRight } from "lucide-react"
+import { useTheme } from '../../contexts/ThemeContext'
 
 const ROLES = [
   { value: "user", label: "User" },
@@ -18,17 +19,13 @@ const LANGUAGES = [
 ]
 
 export default function FullScreenSignup() {
+  const { darkMode, toggleDarkMode } = useTheme()
   const [mobile, setMobile] = useState("")
   const [name, setName] = useState("")
   const [role, setRole] = useState("user")
   const [language, setLanguage] = useState("en")
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [darkMode, setDarkMode] = useState(true)
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
