@@ -1,7 +1,25 @@
+import dotenv from 'dotenv';
+import connectDB from './db/index.js';
 import app from './app.js';
+// Load environment variables from .env file
+dotenv.config();
 
-const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Database Connection 
+connectDB()
+
+// chain  .then with the connectDB to ensure server starts after DB connection 
+.then(() => {
+
+  console.log("mongodb connection successfull");
+  
+  // Start the server on the specified PORT or default to 8000
+  app.listen(process.env.PORT || 8000, () => {
+    console.log(`server is running on port :" ${process.env.PORT}`);
+  });
+
+})
+.catch((e) =>{
+  console.log("mongodb connection failed", e);
+})
+

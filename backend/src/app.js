@@ -1,25 +1,40 @@
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
-import connectDB from './db/connection.js';
+import cookieParser from 'cookie-parser';
 
-import authRoutes from './routes/auth.js';
-import lawyerRoutes from './routes/lawyers.js';
-import topicRoutes from './routes/topics.js';
-
-// Load environment variables and connect to the database
-dotenv.config();
-// Database Connection 
-connectDB();
-
-// Initialize Express app
+// create and intialize app 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-// Routes examples 
-app.use('/api/auth', authRoutes);
-app.use('/api/lawyers', lawyerRoutes);
-app.use('/api/topics', topicRoutes);
+// Middleware to parse JSON request bodies
+app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true
+}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true})); 
+app.use(cookieParser()); 
+
+
+// import all routes her
+import otpRoutes from './routes/otp.routes.js';
+
+// Home route for health check
+app.get('/', (req, res) => {
+    res
+    .status(200)
+    .json(
+        { 
+            status: 'OK', 
+            message: 'LawEase API is running' 
+        }
+    );
+});
+
+// use otp routes here
+app.use('/api/v1/otp', otpRoutes); 
+// api routes will be http://<domain>/api/v1/otp/sendOTP
+// api routes will be http://<domain>/api/v1/otp/verifyOTP
+// api routes will be http://<domain>/api/v1/otp/verifyOTPLogin
+
 
 export default app;
