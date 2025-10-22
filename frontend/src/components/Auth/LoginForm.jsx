@@ -1,6 +1,5 @@
-"use client"
-
-import { useState } from "react"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Mail, Lock, ArrowRight, Shield, AlertCircle, Sun, Moon, Eye, EyeOff, Phone } from 'lucide-react'
 import { useTheme } from '../../contexts/ThemeContext'
 
@@ -174,3 +173,4 @@ export default function FullScreenLogin() {
     </div>
   );
 }
+
