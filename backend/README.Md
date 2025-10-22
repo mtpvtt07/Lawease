@@ -50,30 +50,30 @@ LawEase Backend provides a secure, scalable RESTful API that powers the LawEase 
 backend/
 ├── public/
 ├── src/
-│ ├── controllers/
-│ │ ├── user.controller.js # Email/password user registration, login, and reset
-│ │ └── otp.controller.js # OTP send, verify, and login logic
-│ ├── db/
-│ │ └── index.js # MongoDB connection
-│ ├── middleware/
-│ │ ├── auth.middleware.js # JWT authentication middleware
-│ │ └── user.middleware.js # Optional user validations
-│ ├── models/
-│ │ ├── user.model.js # User schema
-│ │ └── otp.model.js # OTP schema
-│ ├── routes/
-│ │ ├── user.routes.js # Email/password user routes
-│ │ └── otp.routes.js # OTP authentication routes
-│ ├── utils/
-│ │ ├── ApiErrors.js # Custom error class
-│ │ ├── ApiResponse.js # Unified response class
-│ │ ├── asyncHandler.js # Async error wrapper
-│ │ ├── isValidMobile.js # Mobile number validation helper
-│ │ ├── otpGenerator.js # OTP generator utility
-│ │ ├── sendSMS.js # Fast2SMS integration
-│ │ └── sendEmail.js # Brevo email integration
-│ ├── app.js # Express app setup and routes
-│ └── index.js # Server entry point
+│   ├── controllers/
+│   │   ├── user.controller.js # Email/password user registration, login, and reset
+│   │   └── otp.controller.js # OTP send, verify, and login logic
+│   ├── db/
+│   │   └── index.js # MongoDB connection
+│   ├── middleware/
+│   │   ├── auth.middleware.js # JWT authentication middleware
+│   │   └── user.middleware.js # Optional user validations
+│   ├── models/
+│   │   ├── user.model.js # User schema
+│   │   └── otp.model.js # OTP schema
+│   ├── routes/
+│   │   ├── user.routes.js # Email/password user routes
+│   │   └── otp.routes.js # OTP authentication routes
+│   ├── utils/
+│   │   ├── ApiErrors.js # Custom error class
+│   │   ├── ApiResponse.js # Unified response class
+│   │   ├── asyncHandler.js # Async error wrapper
+│   │   ├── isValidMobile.js # Mobile number validation helper
+│   │   ├── otpGenerator.js # OTP generator utility
+│   │   ├── sendSMS.js # Fast2SMS integration
+│   │   └── sendEmail.js # Brevo email integration
+│   ├── app.js # Express app setup and routes
+│   └── index.js # Server entry point
 ├── .env
 ├── .gitignore
 ├── package.json
@@ -94,11 +94,27 @@ npm install
 Create a `.env` file in the root directory:
 
 ```env
+# Server port locally running
 PORT=5000
+
+# JWT secret key
+JWT_SECRET=your_jwt_secret
+
+# MongoDB connection string
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-CORS_ORIGIN=http://localhost:3000
+
+# Fast2SMS API key for sending OTPs
 FAST2SMS_API_KEY=your_fast2sms_api_key
+
+# CORS origin settings (allow frontend access)
+CORS_ORIGIN=http://localhost:3000
+
+# Brevo SMTP settings for sending emails
+SMTP_HOST=smtp-relay.brevo.com
+SMTP_PORT=587
+SMTP_USER=akashgite550@gmail.com
+SMTP_PASS=your_brevo_smtp_password_or_api_key
+
 
 ```
 
@@ -213,3 +229,14 @@ We welcome contributions from everyone! Please follow the standard fork → bran
 ---
 
 ## 📄 License
+-   `Copyright (c) 2025 LawEase`
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
