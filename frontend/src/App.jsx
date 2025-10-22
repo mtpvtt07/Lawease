@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import OtpPage from "./pages/OtpPage";
 import MainPage from "./pages/MainPage";
 import Footer from "./components/footer";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/otp" element={<OtpPage />} />
 
         {/* Protected dashboard */}
         <Route
