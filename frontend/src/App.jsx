@@ -13,13 +13,16 @@ function AppContent() {
   return (
     <>
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/otp" element={<OtpPage />} />
         <Route path="/main" element={<MainPage />} />
       </Routes>
-      <Footer />
+
+      {/* Footer only on non-dashboard pages */}
+      {!hideFooter && <Footer />}
     </>
   );
 }

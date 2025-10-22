@@ -7,9 +7,35 @@ export default function OtpForm() {
   const [error, setError] = useState('')
   const [timer, setTimer] = useState(30)
   const [loading, setLoading] = useState(false)
+  const [darkMode, setDarkMode] = useState(true)
+  const [signupData, setSignupData] = useState(null)
   const inputs = useRef([])
+  const navigate = useNavigate()
 
-  React.useEffect(() => {
+  // Load theme preference and signup data from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setDarkMode(savedTheme === 'dark');
+    }
+
+    // Get signup data from localStorage
+    const data = localStorage.getItem('signupData')
+    if (data) {
+      setSignupData(JSON.parse(data))
+    } else {
+      // If no signup data, redirect to signup page
+      navigate('/signup')
+    }
+  }, [navigate]);
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem('theme', newMode ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
     if (timer > 0) {
       const interval = setInterval(() => setTimer(t => t - 1), 1000)
       return () => clearInterval(interval)
@@ -32,25 +58,85 @@ export default function OtpForm() {
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (otp.join('').length !== 6) {
+    const otpValue = otp.join('')
+    
+    if (otpValue.length !== 6) {
       setError('Please enter the 6-digit OTP')
       return
     }
+
+    if (!signupData) {
+      setError('Signup data not found. Please try signing up again.')
+      return
+    }
+
     setError('')
     setLoading(true)
-    // TODO: Verify OTP logic here
-    setTimeout(() => {
+
+    try {
+      // Call backend API to verify OTP
+      const response = await fetch('http://localhost:8000/api/v1/otp/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mobile: signupData.mobile,
+          fullName: signupData.fullName,
+          role: signupData.role,
+          preferredLanguage: signupData.preferredLanguage,
+          otp: otpValue
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Invalid OTP')
+      }
+
+      // Store the token
+      localStorage.setItem('authToken', data.data.token)
+      
+      // Clear signup data
+      localStorage.removeItem('signupData')
+
+      // Navigate to dashboard
+      navigate('/dashboard')
+    } catch (err) {
+      setError(err.message || 'Failed to verify OTP. Please try again.')
+      console.error('Error verifying OTP:', err)
+    } finally {
       setLoading(false)
-      window.location.href = '/dashboard'
-    }, 1200)
+    }
   }
 
-  const handleResend = () => {
-    if (timer === 0) {
-      setTimer(30)
-      // TODO: Resend OTP logic here
+  const handleResend = async () => {
+    if (timer === 0 && signupData) {
+      try {
+        const response = await fetch('http://localhost:8000/api/v1/otp/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ mobile: signupData.mobile }),
+        })
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to resend OTP')
+        }
+
+        setTimer(30)
+        setOtp(['', '', '', '', '', '']) // Clear OTP input
+        setError('')
+      } catch (err) {
+        setError(err.message || 'Failed to resend OTP')
+        console.error('Error resending OTP:', err)
+      }
     }
   }
 
@@ -95,6 +181,6 @@ export default function OtpForm() {
           Resend OTP{timer > 0 ? ` (${timer}s)` : ''}
         </button>
       </div>
-    </form>
+    </div>
   )
 } 
