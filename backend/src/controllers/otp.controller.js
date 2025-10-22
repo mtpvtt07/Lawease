@@ -28,11 +28,18 @@ export const sendOTP = asyncHandler(async (req, res) => {
     // creating the otp entry in the database with 5 minutes expiry time 
     await OTP.create({ mobile, otp, expiresAt: new Date(Date.now() + 5 * 60 * 1000) });
     
-    // ✅ send OTP via Fast2SMS
-    await sendOtpFast2SMS(mobile, otp);
+    // Try to send OTP via Fast2SMS (optional in development)
+    try {
+        await sendOtpFast2SMS(mobile, otp);
+        console.log(`✅ OTP sent via SMS to ${mobile}: ${otp}`);
+    } catch (smsError) {
+        // If SMS fails, just log it but don't fail the request
+        console.log(`⚠️ SMS sending failed (continuing anyway): ${smsError.message}`);
+        console.log(`📱 OTP for ${mobile}: ${otp}`);
+    }
 
     // debug: log the OTP to console (in real application, send via SMS)
-    console.log(`OTP for ${mobile}: ${otp}`);
+    console.log(`🔐 OTP for ${mobile}: ${otp}`);
     // send API response back to client
     return res
     .status(200)
