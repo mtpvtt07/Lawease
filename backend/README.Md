@@ -2,6 +2,17 @@
 
 Backend API for **LawEase** - a platform designed to make legal information accessible and understandable for everyone, especially rural communities.
 
+## 🌟 Overview
+
+LawEase Backend provides a secure, scalable RESTful API that powers the LawEase platform. Built with Node.js and Express, it handles user authentication via OTP, manages legal resources, and facilitates communication between users and legal professionals.
+
+### Key Highlights
+- 🔐 **Secure Authentication** - OTP-based login with JWT tokens
+- 📱 **SMS Integration** - Fast2SMS for OTP delivery
+- 🗄️ **MongoDB Database** - Efficient data storage with Mongoose ODM
+- 🛡️ **Error Handling** - Centralized error management system
+- 🏗️ **Modular Architecture** - Clean, maintainable codebase
+
 ---
 
 ## 📋 Table of Contents
@@ -11,7 +22,11 @@ Backend API for **LawEase** - a platform designed to make legal information acce
 - [Environment Variables](#-environment-variables)
 - [Running the Server](#-running-the-server)
 - [Folder Breakdown](#-folder-breakdown)
+- [Features Implemented](#-features-implemented)
 - [Planned Features](#-planned-features)
+- [API Documentation](#-api-documentation)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
@@ -33,22 +48,29 @@ Backend API for **LawEase** - a platform designed to make legal information acce
 
 ```
 backend/
-├── public/                 # Static files
+├── public/
 ├── src/
-│   ├── controllers/        # Business logic & API handlers
-│   │   └── user.controller.js
-│   ├── db/                 # Database configuration
-│   │   └── index.js
-│   ├── middleware/         # Custom middleware functions
-│   │   └── auth.middleware.js
-│   ├── models/             # Database schemas
-│   │   └── models.js
-│   ├── routes/             # API route definitions
-│   │   └── user.route.js
-│   ├── utils/              # Helper functions
-│   ├── app.js              # Express app configuration
-│   └── index.js            # Server entry point
-├── .env                    # Environment variables
+│ ├── controllers/
+│ │ └── otp.controller.js # OTP send, verify, and login logic
+│ ├── db/
+│ │ └── index.js # MongoDB connection
+│ ├── middleware/
+│ │ └── auth.middleware.js # JWT authentication middleware
+│ ├── models/
+│ │ ├── user.model.js # User schema
+│ │ └── otp.model.js # OTP schema
+│ ├── routes/
+│ │ └── otp.routes.js # OTP and authentication routes
+│ ├── utils/
+│ │ ├── ApiErrors.js # Custom error class
+│ │ ├── ApiResponse.js # Unified response class
+│ │ ├── asyncHandler.js # Async error wrapper
+│ │ ├── isValidMobile.js # Mobile number validation helper
+│ │ ├── otpGenerator.js # OTP generator utility
+│ │ └── sendSMS.js # Fast2SMS integration
+│ ├── app.js # Express app setup and routes
+│ └── index.js # Server entry point
+├── .env
 ├── .gitignore
 ├── package.json
 └── README.md
@@ -71,6 +93,9 @@ Create a `.env` file in the root directory:
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
+CORS_ORIGIN=http://localhost:3000
+FAST2SMS_API_KEY=your_fast2sms_api_key
+
 ```
 
 ### 3️⃣ Running the Server
@@ -94,6 +119,7 @@ Server will run at: `http://localhost:5000`
 ### **controllers/**
 Contains business logic and request handlers for API endpoints.
 - `user.controller.js` - User-related operations
+- `otp.controller.js`  - Handles sending OTP, verifying OTP, and login authentication.
 
 ### **db/**
 Database connection and configuration.
@@ -101,18 +127,27 @@ Database connection and configuration.
 
 ### **middleware/**
 Custom middleware for authentication, validation, etc.
-- `user.middleware.js` - User authentication and validation
+- `auth.middleware.js` - Verifies JWT tokens for protected routes.
 
 ### **models/**
 Mongoose schemas and models.
 - `models.js` - Database schema definitions
+- `otp.model.js` - Defines OTP structure with expiry time.
 
 ### **routes/**
 API route definitions linked to controllers.
 - `user.route.js` - User-related routes
+- `otp.routes.js` - All routes related to authentication and OTP flow.
 
 ### **utils/**
 Reusable helper functions and utilities.
+- `otp.routes.js`   - All routes related to authentication and OTP flow.
+- `ApiErrors.js`    - Centralized error handling.
+- `ApiResponse.js`  - Consistent API response structure.
+- `asyncHandler.js` - Wraps async route handlers.
+- `isValidMobile.js`- Validates Indian mobile numbers.
+- `otpGenerator.js` - Generates random 6-digit OTPs.
+- `sendSMS.js`      - Sends OTP messages using Fast2SMS
 
 ### **app.js**
 Express application setup, middleware configuration, and route mounting.
@@ -122,26 +157,47 @@ Server entry point that starts the application.
 
 ---
 
-## 🚀 Planned Features
+## 🚀 Features Implemented
 
-- ✅ User authentication and authorization
-- ✅ Role-based access control (User, Lawyer, Admin)
-- 🔄 Legal topic categorization and management
-- 🔄 Rural-friendly legal help modules
-- 🔄 Multi-language support
-- 🔄 Document management system
+- ✅ OTP-based user registration
+- ✅ OTP login authentication
+- ✅ JWT token generation for secure access
+- ✅ Error and response handling via utility classes
+- ✅ Modular folder structure
+- ✅ Auth middleware for protected routes
 
 ---
 
+## 🔮 Planned Features
+- 🔄 Google / Email login integration
+- 🔄 Role-based access (User, Lawyer, Admin)
+- 🔄 Multi-language support
+- 🔄 User and Lawyer profile dashboards
+- 🔄 Secure document management
+- 🔄 Lawyer–User chat system
+
 ## 📝 API Documentation
 
-*Coming soon...*
+| Endpoint             | Method | Description                                     |
+| -------------------- | ------ | ----------------------------------------------- |
+| `/api/v1/otp/send`   | POST   | Send OTP to mobile number                       |
+| `/api/v1/otp/verify` | POST   | Verify OTP & create user account                |
+| `/api/v1/otp/login`  | POST   | Verify OTP for login                            |
+| `/api/v1/protected`  | GET    | Example of protected route using JWT middleware |
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow the standard fork-and-pull request workflow.
+We welcome contributions from everyone! Please follow the standard fork → branch → pull request workflow.
+
+🧩 Contribution Guidelines:
+
+-   For all asynchronous operations, use the predefined asyncHandler() wrapper function for consistent and centralized error handling.
+-   When throwing errors, always use the ApiErrors class for better error structure and readability.
+-   When sending API responses, use the ApiResponse class to ensure consistency and cleaner code.
+-   Follow the modular architecture — avoid repeating logic and keep code reusable across the application.
+-   This ensures maintainability, scalability, and consistent behavior throughout the project.
 
 ---
 
