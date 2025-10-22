@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { User, Phone, ChevronDown, Shield, AlertCircle, Sun, Moon, ArrowRight } from "lucide-react"
 
 const ROLES = [
@@ -17,7 +18,7 @@ const LANGUAGES = [
   { value: "gu", label: "Gujarati" },
 ]
 
-export default function FullScreenSignup() {
+export default function SignupForm() {
   const [mobile, setMobile] = useState("")
   const [name, setName] = useState("")
   const [role, setRole] = useState("user")
@@ -25,12 +26,13 @@ export default function FullScreenSignup() {
   const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [darkMode, setDarkMode] = useState(true)
+  const navigate = useNavigate()
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsLoading(true)
     setError("")
@@ -46,10 +48,38 @@ export default function FullScreenSignup() {
       return
     }
 
-    setTimeout(() => {
-      window.location.href = "/otp"
+    try {
+      // Call backend API to send OTP
+      const response = await fetch('http://localhost:8000/api/v1/otp/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ mobile }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send OTP')
+      }
+
+      // Store signup data in localStorage to use in OTP verification
+      localStorage.setItem('signupData', JSON.stringify({
+        mobile,
+        fullName: name,
+        role,
+        preferredLanguage: language
+      }))
+
+      // Navigate to OTP page
+      navigate('/otp')
+    } catch (err) {
+      setError(err.message || 'Failed to send OTP. Please try again.')
+      console.error('Error sending OTP:', err)
+    } finally {
       setIsLoading(false)
-    }, 1500)
+    }
   }
 
   return (
