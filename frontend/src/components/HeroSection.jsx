@@ -354,6 +354,17 @@ export default function ProfessionalLawEaseLanding() {
                     Verified Lawyers Only
                   </span>
                 </div>
+
+                {/* Tech Stack */}
+                <div className={`mt-6 p-6 rounded-2xl border ${darkMode ? "border-gray-700 bg-gray-900/40" : "border-gray-200 bg-white"}`}>
+                  <h4 className={`text-lg font-semibold mb-3 ${darkMode ? "text-white" : "text-black"}`}>Tech Stack</h4>
+                  <div className="flex flex-wrap gap-3">
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>React (Vite)</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>Node.js + Express</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>MongoDB</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>Auth (JWT/Session)</span>
+                  </div>
+                </div>
               </div>
 
               {/* Dynamic Stats */}
@@ -736,6 +747,67 @@ export default function ProfessionalLawEaseLanding() {
                       <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
                         Confidential, ethical, and personalized legal help—tailored to your needs and language.
                       </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Features from README */}
+              <div className="mt-10 space-y-4">
+                <h3 className={`text-2xl font-bold ${darkMode ? "text-white" : "text-black"}`}>Key Features</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <BookOpen className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Categorized Topics</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Legal issues organized into clear categories and subtopics.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <Globe className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Regional Languages</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Simple-language explanations with regional support.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <Play className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Video Summaries</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Short videos explaining selected legal topics.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <Handshake className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Lawyer Directory</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Find legal firms and connect for advice.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <UserCheck className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Accounts & Dashboards</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Save resources and access a personal dashboard.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <MessageSquare className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Helper Chat & FAQs</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Reduce friction with guided help and answers.</div>
+                      </div>
                     </div>
                   </div>
                 </div>
