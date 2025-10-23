@@ -692,6 +692,104 @@ export default function ProfessionalLawEaseLanding() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className={`py-20 lg:py-32 ${darkMode ? "bg-gray-900/30" : "bg-gray-50/30"}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+            <div>
+              <h2 className={`text-4xl lg:text-6xl font-bold mb-6 ${darkMode ? "text-white" : "text-black"}`}>
+                About <span className={darkMode ? "text-gray-400" : "text-gray-600"}>LawEase</span>
+              </h2>
+              <p className={`text-lg lg:text-xl leading-relaxed mb-8 ${darkMode ? "text-gray-400" : "text-gray-700"}`}>
+                We are on a mission to make quality legal help accessible and affordable for everyone in India.
+                By combining trusted legal expertise with modern technology and multilingual support, we bridge
+                the gap between citizens and justice—especially across rural and underserved communities.
+              </p>
+              <div className="space-y-6">
+                <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                  <div className="flex items-start gap-4">
+                    <Target className={`w-6 h-6 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                    <div>
+                      <h3 className={`text-xl font-semibold transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`}>Our Mission</h3>
+                      <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Deliver transparent, affordable, and outcome-driven legal services with empathy and speed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                  <div className="flex items-start gap-4">
+                    <Award className={`w-6 h-6 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                    <div>
+                      <h3 className={`text-xl font-semibold transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`}>What Sets Us Apart</h3>
+                      <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        AI-assisted guidance, verified lawyers, vernacular support, and transparent pricing.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                  <div className="flex items-start gap-4">
+                    <Handshake className={`w-6 h-6 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                    <div>
+                      <h3 className={`text-xl font-semibold transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`}>Our Promise</h3>
+                      <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Confidential, ethical, and personalized legal help—tailored to your needs and language.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className={`rounded-3xl p-8 border transition-all duration-300 hover:shadow-xl ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white/50 border-gray-200 hover:border-gray-300"}`}>
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Users className={`w-7 h-7 ${darkMode ? "text-black" : "text-white"}`} />
+                    </div>
+                    <div className={`text-3xl font-bold transition-colors ${darkMode ? "text-white group-hover:text-gray-300" : "text-black group-hover:text-gray-700"}`}>50,000+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Clients Served</div>
+                  </div>
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Scale className={`w-7 h-7 transition-colors ${darkMode ? "text-black" : "text-white"} group-hover:text-green-500`} />
+                    </div>
+                    <div className={`text-3xl font-bold ${darkMode ? "text-white" : "text-black"}`}>25,000+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Cases Resolved</div>
+                  </div>
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Shield className={`w-7 h-7 transition-colors ${darkMode ? "text-black" : "text-white"} group-hover:text-green-500`} />
+                    </div>
+                    <div className={`text-3xl font-bold ${darkMode ? "text-white" : "text-black"}`}>1,200+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Verified Lawyers</div>
+                  </div>
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Globe className={`w-7 h-7 transition-colors ${darkMode ? "text-black" : "text-white"} group-hover:text-green-500`} />
+                    </div>
+                    <div className={`text-3xl font-bold ${darkMode ? "text-white" : "text-black"}`}>12+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Languages Supported</div>
+                  </div>
+                </div>
+
+                <div className={`mt-10 p-6 rounded-2xl border ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
+                  <h4 className={`text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-black"}`}>Values</h4>
+                  <ul className={`grid sm:grid-cols-2 gap-3 text-sm ${darkMode ? "text-gray-400" : "text-gray-700"}`}>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Integrity & Ethics</li>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Transparency</li>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Accessibility</li>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Client-first</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section id="testimonials" className={`py-20 lg:py-32 ${darkMode ? "bg-gray-900/30" : "bg-gray-50/30"}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
