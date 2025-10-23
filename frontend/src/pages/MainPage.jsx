@@ -1,8 +1,9 @@
-import DashboardNavbar from "../components/DashboardNavbar";
-import WelcomeBanner from "../components/Dashboard/WelcomeBanner";
-import QuickAccessPanel from "../components/Dashboard/QuickAccessPanel";
-import LegalCategories from "../components/Dashboard/LegalCategories";
-import RecentArticles from "../components/Dashboard/RecentArticles";
+import React from 'react';
+import WelcomeBanner from '../components/Dashboard/WelcomeBanner';
+import LegalCategories from '../components/Dashboard/LegalCategories';
+import QuickAccessPanel from '../components/Dashboard/QuickAccessPanel';
+import RecentArticles from '../components/Dashboard/RecentArticles';
+import LegalChatbot from './LegalChatBot';
 
 export default function MainPage() {
   return (
@@ -22,6 +23,7 @@ export default function MainPage() {
       <footer className="border-t border-white/10 py-6 text-center text-gray-400 text-sm">
         © 2023 LawEase. All rights reserved.
       </footer>
+      <LegalChatbot />
     </div>
   );
 }
