@@ -17,6 +17,8 @@ app.use(cookieParser());
 
 // import all routes her
 import otpRoutes from './routes/otp.routes.js';
+// import the user routes
+import userRoutes from './routes/user.routes.js';
 
 // Home route for health check
 app.get('/', (req, res) => {
@@ -35,6 +37,14 @@ app.use('/api/v1/otp', otpRoutes);
 // api routes will be http://<domain>/api/v1/otp/sendOTP
 // api routes will be http://<domain>/api/v1/otp/verifyOTP
 // api routes will be http://<domain>/api/v1/otp/verifyOTPLogin
+
+// use user routes here
+app.use('/api/v1/users', userRoutes); 
+// api routes will be http://<domain>/api/v1/users/register
+// api routes will be http://<domain>/api/v1/users/login
+// api routes will be http://<domain>/api/v1/users/forgot-password
+// api routes will be http://<domain>/api/v1/users/verify-reset-code
+// api routes will be http://<domain>/api/v1/users/reset-password
 
 
 export default app;
