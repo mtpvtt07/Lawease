@@ -1,78 +1,254 @@
 @import "tailwindcss";
 
-/* * This 'body' block was causing the server to crash.
- * I have commented it out. The background color is already
- * set in your UserDashboardPage.tsx file, so this is safe to remove.
-*/
-/* body {
-  @apply bg-light-bg;
+/* ==================== Theme Variables ==================== */
+:root {
+  /* Light Theme Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --accent-primary: #3b82f6;
+  --accent-secondary: #8b5cf6;
+  --card-bg: #ffffff;
+  --card-hover: #f9fafb;
+  --scrollbar-track: #f0f0f0;
+  --scrollbar-start: #6b7280;
+  --scrollbar-end: #9ca3af;
+  --scrollbar-hover-start: #4b5563;
+  --scrollbar-hover-end: #6b7280;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
 }
-*/
 
-/* Smooth Scrolling */
+.dark {
+  /* Dark Theme Colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-color: #334155;
+  --accent-primary: #60a5fa;
+  --accent-secondary: #a78bfa;
+  --card-bg: #1e293b;
+  --card-hover: #334155;
+  --scrollbar-track: #111827;
+  --scrollbar-start: #374151;
+  --scrollbar-end: #6b7280;
+  --scrollbar-hover-start: #4b5563;
+  --scrollbar-hover-end: #9ca3af;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6);
+}
+
+/* ==================== Smooth Scrolling ==================== */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Custom Animations */
-@layer utilities {
-  .animate-gradient-move {
-    background-size: 200% 200%;
-    animation: gradientMove 8s ease-in-out infinite;
-  }
-  @keyframes gradientMove {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-  .animate-fade-in {
-    animation: fadeIn 1s ease;
-  }
-  .animate-fade-in-slow {
-    animation: fadeIn 2s ease;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: none; }
-  }
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Base scrollbar setup */
+/* ==================== Scrollbar Styling ==================== */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
-/* Track (background behind the scrollbar thumb) */
 ::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-/* Thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, var(--scrollbar-start), var(--scrollbar-end));
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
-/* Hover effect for thumb */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--scrollbar-hover-start), var(--scrollbar-hover-end));
 }
 
-/* Light mode variables */
-:root {
-  --scrollbar-track: #f0f0f0;
-  --scrollbar-start: #6b7280; /* gray-500 */
-  --scrollbar-end: #9ca3af;   /* gray-400 */
-  --scrollbar-hover-start: #4b5563; /* gray-600 */
-  --scrollbar-hover-end: #6b7280;   /* gray-500 */
+/* ==================== Custom Animations ==================== */
+@layer utilities {
+  /* Gradient Animation */
+  .animate-gradient-move {
+    background-size: 200% 200%;
+    animation: gradientMove 8s ease-in-out infinite;
+  }
+  
+  @keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Fade In Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-fade-in-slow {
+    animation: fadeIn 1s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  /* Slide In Animations */
+  .animate-slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from { 
+      opacity: 0; 
+      transform: translateX(-30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+  
+  @keyframes slideInRight {
+    from { 
+      opacity: 0; 
+      transform: translateX(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+
+  /* Scale Animation */
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+  
+  @keyframes scaleIn {
+    from { 
+      opacity: 0; 
+      transform: scale(0.9); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+
+  /* Shimmer Effect */
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Pulse Glow */
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); 
+    }
+    50% { 
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); 
+    }
+  }
+
+  /* Float Animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
 }
 
-/* Dark mode variables */
-.dark {
-  --scrollbar-track: #111827; /* gray-900 */
-  --scrollbar-start: #374151; /* gray-700 */
-  --scrollbar-end: #6b7280;   /* gray-500 */
-  --scrollbar-hover-start: #4b5563; /* gray-600 */
-  --scrollbar-hover-end: #9ca3af;   /* gray-400 */
+/* ==================== Transition Classes ==================== */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.transition-fast {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-slow {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== Glass Morphism ==================== */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==================== Card Hover Effects ==================== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ==================== Focus Styles ==================== */
+.focus-ring:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* ==================== Selection Styles ==================== */
+::selection {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--accent-primary);
+  color: white;
+}
+

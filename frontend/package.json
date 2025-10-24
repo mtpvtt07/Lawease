@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.33.0",
+    "@google/genai": "^1.25.0",
     "@tailwindcss/vite": "^4.1.11",
     "framer-motion": "^12.23.24",
+    "i18next": "^25.6.0",
+    "i18next-browser-languagedetector": "^8.2.0",
     "lucide-react": "^0.525.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-i18next": "^16.1.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.3"
   },

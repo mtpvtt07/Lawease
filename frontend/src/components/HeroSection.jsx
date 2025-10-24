@@ -47,109 +47,9 @@ const LANGUAGES = [
   { code: "mr", label: "मराठी", flag: "🇮🇳" },
 ]
 
-// Professional Navbar Component
-const ProfessionalNavbar = ({
-  language,
-  setLanguage,
-  mobileMenuOpen,
-  setMobileMenuOpen,
-  scrollY,
-  darkMode,
-  toggleDarkMode,
-}) => {
-  return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrollY > 50
-        ? `${darkMode ? "bg-black/90" : "bg-white/90"} backdrop-blur-md border-b ${darkMode ? "border-gray-800" : "border-gray-200"} shadow-lg`
-        : "bg-transparent"
-        }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div
-              className={`w-10 h-10 ${darkMode ? "bg-white" : "bg-black"} rounded-lg flex items-center justify-center`}
-            >
-              <Scale className={`w-6 h-6 ${darkMode ? "text-black" : "text-white"}`} />
-            </div>
-            <div>
-              <h1 className={`text-xl font-bold ${darkMode ? "text-white" : "text-black"}`}>LawEase</h1>
-              <p className={`text-xs ${darkMode ? "text-gray-400" : "text-gray-600"}`}>Legal Solutions</p>
-            </div>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {[
-              { name: "Home", href: "#home" },
-              { name: "Services", href: "#services" },
-              { name: "Lawyers", href: "#lawyers" },
-              { name: "About", href: "#about" },
-              { name: 'FAQ', href: '#faq' }, // <- New section
-              { name: "Contact", href: "#contact" },
-            ].map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors duration-200 ${darkMode ? "text-gray-300 hover:text-white" : "text-gray-700 hover:text-black"
-                  }`}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-
-          {/* Right Side Actions */}
-          <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleDarkMode}
-              className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors duration-200 ${darkMode ? "bg-gray-800 hover:bg-gray-700 text-white" : "bg-gray-100 hover:bg-gray-200 text-black"
-                }`}
-            >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
-
-            {/* Language Selector */}
-            <div className="relative group">
-              <button
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${darkMode ? "bg-gray-800 hover:bg-gray-700 text-white" : "bg-gray-100 hover:bg-gray-200 text-black"
-                  }`}
-              >
-                <Globe className="w-4 h-4" />
-                <span>{LANGUAGES.find((l) => l.code === language)?.label}</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* CTA Button */}
-            <Link
-              to="/login"
-              className={`hidden lg:flex items-center gap-2 px-6 py-2.5 rounded-lg font-medium transition-all duration-200 ${darkMode ? "bg-white text-black hover:bg-gray-100" : "bg-black text-white hover:bg-gray-800"
-                }`}
-            >
-              Get Started
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`lg:hidden w-10 h-10 rounded-lg flex items-center justify-center ${darkMode ? "bg-gray-800 hover:bg-gray-700 text-white" : "bg-gray-100 hover:bg-gray-200 text-black"
-                }`}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
-  )
-}
+import Navbar from './Navbar'
 
 export default function ProfessionalLawEaseLanding() {
-  const [language, setLanguage] = useState("en")
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -321,10 +221,8 @@ export default function ProfessionalLawEaseLanding() {
       className={`min-h-screen transition-colors duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-black"
         }`}
     >
-      {/* Professional Navigation */}
-      <ProfessionalNavbar
-        language={language}
-        setLanguage={setLanguage}
+      {/* Navigation */}
+      <Navbar
         mobileMenuOpen={mobileMenuOpen}
         setMobileMenuOpen={setMobileMenuOpen}
         scrollY={scrollY}
@@ -455,6 +353,17 @@ export default function ProfessionalLawEaseLanding() {
                   <span className={`text-sm ${darkMode ? "text-gray-400" : "text-gray-600"}`}>
                     Verified Lawyers Only
                   </span>
+                </div>
+
+                {/* Tech Stack */}
+                <div className={`mt-6 p-6 rounded-2xl border ${darkMode ? "border-gray-700 bg-gray-900/40" : "border-gray-200 bg-white"}`}>
+                  <h4 className={`text-lg font-semibold mb-3 ${darkMode ? "text-white" : "text-black"}`}>Tech Stack</h4>
+                  <div className="flex flex-wrap gap-3">
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>React (Vite)</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>Node.js + Express</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>MongoDB</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium border transition-colors ${darkMode ? "border-gray-700 text-gray-300 bg-gray-800" : "border-gray-300 text-gray-700 bg-gray-50"}`}>Auth (JWT/Session)</span>
+                  </div>
                 </div>
               </div>
 
@@ -787,6 +696,165 @@ export default function ProfessionalLawEaseLanding() {
                       </p>
                     </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className={`py-20 lg:py-32 ${darkMode ? "bg-gray-900/30" : "bg-gray-50/30"}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+            <div>
+              <h2 className={`text-4xl lg:text-6xl font-bold mb-6 ${darkMode ? "text-white" : "text-black"}`}>
+                About <span className={darkMode ? "text-gray-400" : "text-gray-600"}>LawEase</span>
+              </h2>
+              <p className={`text-lg lg:text-xl leading-relaxed mb-8 ${darkMode ? "text-gray-400" : "text-gray-700"}`}>
+                We are on a mission to make quality legal help accessible and affordable for everyone in India.
+                By combining trusted legal expertise with modern technology and multilingual support, we bridge
+                the gap between citizens and justice—especially across rural and underserved communities.
+              </p>
+              <div className="space-y-6">
+                <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                  <div className="flex items-start gap-4">
+                    <Target className={`w-6 h-6 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                    <div>
+                      <h3 className={`text-xl font-semibold transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`}>Our Mission</h3>
+                      <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Deliver transparent, affordable, and outcome-driven legal services with empathy and speed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                  <div className="flex items-start gap-4">
+                    <Award className={`w-6 h-6 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                    <div>
+                      <h3 className={`text-xl font-semibold transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`}>What Sets Us Apart</h3>
+                      <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        AI-assisted guidance, verified lawyers, vernacular support, and transparent pricing.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={`group p-6 rounded-2xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:scale-[1.02] ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                  <div className="flex items-start gap-4">
+                    <Handshake className={`w-6 h-6 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                    <div>
+                      <h3 className={`text-xl font-semibold transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`}>Our Promise</h3>
+                      <p className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>
+                        Confidential, ethical, and personalized legal help—tailored to your needs and language.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Features from README */}
+              <div className="mt-10 space-y-4">
+                <h3 className={`text-2xl font-bold ${darkMode ? "text-white" : "text-black"}`}>Key Features</h3>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <BookOpen className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Categorized Topics</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Legal issues organized into clear categories and subtopics.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <Globe className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Regional Languages</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Simple-language explanations with regional support.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <Play className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Video Summaries</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Short videos explaining selected legal topics.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <Handshake className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Lawyer Directory</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Find legal firms and connect for advice.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <UserCheck className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Accounts & Dashboards</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Save resources and access a personal dashboard.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`group p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${darkMode ? "bg-gray-900/40 border-gray-700 hover:border-gray-600" : "bg-white border-gray-200 hover:border-gray-300"}`}>
+                    <div className="flex items-start gap-3">
+                      <MessageSquare className={`w-5 h-5 transition-colors ${darkMode ? "text-white" : "text-black"} group-hover:text-green-500`} />
+                      <div>
+                        <div className={`font-semibold ${darkMode ? "text-white" : "text-black"}`}>Helper Chat & FAQs</div>
+                        <div className={`${darkMode ? "text-gray-400" : "text-gray-600"}`}>Reduce friction with guided help and answers.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className={`rounded-3xl p-8 border transition-all duration-300 hover:shadow-xl ${darkMode ? "bg-gray-900/50 border-gray-700 hover:border-gray-600" : "bg-white/50 border-gray-200 hover:border-gray-300"}`}>
+                <div className="grid sm:grid-cols-2 gap-8">
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Users className={`w-7 h-7 ${darkMode ? "text-black" : "text-white"}`} />
+                    </div>
+                    <div className={`text-3xl font-bold transition-colors ${darkMode ? "text-white group-hover:text-gray-300" : "text-black group-hover:text-gray-700"}`}>50,000+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Clients Served</div>
+                  </div>
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Scale className={`w-7 h-7 transition-colors ${darkMode ? "text-black" : "text-white"} group-hover:text-green-500`} />
+                    </div>
+                    <div className={`text-3xl font-bold ${darkMode ? "text-white" : "text-black"}`}>25,000+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Cases Resolved</div>
+                  </div>
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Shield className={`w-7 h-7 transition-colors ${darkMode ? "text-black" : "text-white"} group-hover:text-green-500`} />
+                    </div>
+                    <div className={`text-3xl font-bold ${darkMode ? "text-white" : "text-black"}`}>1,200+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Verified Lawyers</div>
+                  </div>
+                  <div className="text-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all group-hover:scale-110 ${darkMode ? "bg-white" : "bg-black"}`}>
+                      <Globe className={`w-7 h-7 transition-colors ${darkMode ? "text-black" : "text-white"} group-hover:text-green-500`} />
+                    </div>
+                    <div className={`text-3xl font-bold ${darkMode ? "text-white" : "text-black"}`}>12+</div>
+                    <div className={`transition-colors ${darkMode ? "text-gray-400 group-hover:text-gray-300" : "text-gray-600 group-hover:text-gray-700"}`}>Languages Supported</div>
+                  </div>
+                </div>
+
+                <div className={`mt-10 p-6 rounded-2xl border ${darkMode ? "border-gray-700" : "border-gray-200"}`}>
+                  <h4 className={`text-lg font-semibold mb-2 ${darkMode ? "text-white" : "text-black"}`}>Values</h4>
+                  <ul className={`grid sm:grid-cols-2 gap-3 text-sm ${darkMode ? "text-gray-400" : "text-gray-700"}`}>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Integrity & Ethics</li>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Transparency</li>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Accessibility</li>
+                    <li className="group flex items-center gap-2 transition-transform hover:translate-x-1"><CheckCircle className="w-4 h-4 text-green-500 transition-transform group-hover:scale-110" /> Client-first</li>
+                  </ul>
                 </div>
               </div>
             </div>
