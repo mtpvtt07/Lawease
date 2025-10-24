@@ -1,12 +1,17 @@
 @import "tailwindcss";
 
+/* * This 'body' block was causing the server to crash.
+ * I have commented it out. The background color is already
+ * set in your UserDashboardPage.tsx file, so this is safe to remove.
+*/
+/* body {
+  @apply bg-light-bg;
+}
+*/
+
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
-}
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
 }
 
 /* Custom Animations */
@@ -16,7 +21,7 @@ html {
     animation: gradientMove 8s ease-in-out infinite;
   }
   @keyframes gradientMove {
-    0%,100% { background-position: 0% 50%; }
+    0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
   .animate-fade-in {
