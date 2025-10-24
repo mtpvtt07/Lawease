@@ -2,7 +2,7 @@ import express from "express";
 import {
     registerUser,
     loginUser,
-    requestPasswordReset,
+    forgotPassword,
     verifyResetCode,
     resetPassword
 } from "../controllers/user.controller.js";
@@ -21,7 +21,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // Request password reset (send verification code to email)
-router.post("/forgot-password", requestPasswordReset);
+router.post("/forgot-password", forgotPassword);
 
 // Verify the code sent to email
 router.post("/verify-reset-code", verifyResetCode);

@@ -1,11 +1,17 @@
 import React from 'react'
 import { Scale, Phone, Menu, X, Sun, Moon } from 'lucide-react'
-import GoogleTranslateWrapper from './GoogleTranslateWrapper'
+import GlobalLanguageSwitcher from './GlobalLanguageSwitcher'
 import { Link } from 'react-router-dom'
 
 export default function Navbar({ mobileMenuOpen, setMobileMenuOpen, scrollY, darkMode, toggleDarkMode }) {
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrollY > 50 ? `${darkMode ? 'bg-black/90' : 'bg-white/90'} backdrop-blur-md border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'} shadow-lg` : 'bg-transparent'}`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrollY > 50
+          ? `${darkMode ? 'bg-black/90' : 'bg-white/90'} backdrop-blur-md border-b ${darkMode ? 'border-gray-800' : 'border-gray-200'} shadow-lg`
+          : `${darkMode ? 'bg-black/70' : 'bg-white/80'} backdrop-blur-md border-b ${darkMode ? 'border-gray-800/60' : 'border-gray-200/60'}`
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo & Brand */}
@@ -49,9 +55,9 @@ export default function Navbar({ mobileMenuOpen, setMobileMenuOpen, scrollY, dar
               {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
-            {/* Google Translate */}
+            {/* Global Language Switcher (Google Translate powered) */}
             <div className="block">
-              <GoogleTranslateWrapper />
+              <GlobalLanguageSwitcher />
             </div>
 
             {/* CTA Button */}

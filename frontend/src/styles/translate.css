@@ -1,4 +1,4 @@
-/* Hide Google Translate banner and branding */
+/* Hide only the Google Translate banner frame (keeps language menu iframe visible) */
 .goog-te-banner-frame.skiptranslate {
   display: none !important;
 }
@@ -7,8 +7,14 @@
   display: none !important;
 }
 
-iframe.skiptranslate {
+/* Hide tooltip/balloon that sometimes appears */
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight,
+.goog-te-balloon-frame {
   display: none !important;
+  visibility: hidden !important;
 }
 
 body {
@@ -16,71 +22,20 @@ body {
   position: static !important;
 }
 
-.skiptranslate iframe {
-  visibility: hidden !important;
-  display: none !important;
+/* Keep Google widget present but off-screen; UI handled by GlobalLanguageSwitcher */
+#google_translate_element {
+  position: absolute !important;
+  left: -99999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
 }
 
-body > .skiptranslate {
-  display: none !important;
-}
-
-/* Style the translate widget */
+/* Hide branding */
 .goog-te-gadget {
   font-family: inherit !important;
   font-size: 0 !important;
   color: transparent !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-  display: none;
-  margin: 0 !important;
-  padding: 8px 12px !important;
-  border: 1px solid #4b5563 !important;
-  border-radius: 6px !important;
-  background-color: #1f2937 !important;
-  font-size: 14px !important;
-  color: #ffffff !important;
-  /* width: 100% !important;
-   */
-   position: absolute;
-   top: 80px;
-   right: 110px;
-
-  box-sizing: border-box !important;
-}
-
-@media screen and (max-width: 768px) {
-  .goog-te-gadget .goog-te-combo {
-    top: 90px;
-    right: 20px;
-    padding: 6px 10px !important;
-    font-size: 12px !important;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .goog-te-gadget .goog-te-combo {
-    top: 70px;
-    right: 20px;
-    padding: 4px 8px !important;
-    font-size: 11px !important;
-  }
-}
-
-#google_translate_element a{
-  display: none;
-}
-
-.goog-te-gadget .goog-te-combo:focus {
-  outline: none !important;
-  border-color: #f59e0b !important;
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2) !important;
-}
-
-.goog-te-gadget .goog-te-combo option {
-  color: #000000 !important;
-  background-color: #ffffff !important;
 }
 
 .goog-logo-link {
@@ -91,44 +46,95 @@ body > .skiptranslate {
   display: none !important;
 }
 
-.goog-te-gadget-simple {
-  background-color: transparent !important;
-  border: none !important;
-}
-
-.goog-te-menu-value span {
-  color: #ffffff !important;
-}
-
 .goog-te-gadget-icon {
   display: none !important;
 }
 
-#google_translate_element .goog-te-gadget-simple {
+#google_translate_element a {
+  display: none !important;
+}
+
+.goog-te-gadget-simple {
   background-color: transparent !important;
   border: none !important;
   padding: 0 !important;
 }
 
-#google_translate_element .goog-te-menu-value {
+/* Keep the native combo present but off-screen; programmatic changes still work */
+.goog-te-gadget .goog-te-combo {
+  position: absolute !important;
+  left: -99999px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Light mode */
+html.light .goog-te-gadget .goog-te-combo {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
+}
+
+body.light .goog-te-gadget .goog-te-combo {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+  color: #111827 !important;
+}
+
+/* Options - Make them visible */
+.goog-te-gadget .goog-te-combo option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Hover */
+.goog-te-gadget .goog-te-combo:hover {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Focus */
+.goog-te-gadget .goog-te-combo:focus {
+  outline: 2px solid #6366f1 !important;
+  outline-offset: 2px !important;
+  border-color: #6366f1 !important;
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .goog-te-gadget .goog-te-combo {
+    min-width: 180px !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .goog-te-gadget .goog-te-combo {
+    min-width: 160px !important;
+    padding: 7px 10px !important;
+    font-size: 13px !important;
+  }
+}
+
+/* Hide menu text */
+.goog-te-menu-value span:first-child {
+  display: none !important;
+}
+
+.goog-te-menu-value span:nth-child(3) {
+  display: none !important;
+}
+
+.goog-te-menu-value span:nth-child(5) {
+  display: none !important;
+}
+
+.goog-te-menu-value span {
   color: #ffffff !important;
 }
-
-#google_translate_element .goog-te-menu-value span:first-child {
-  display: none !important;
-}
-
-#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span {
-  color: #ffffff !important;
-}
-
-#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span:nth-child(3) {
-  display: none !important;
-}
-
-#google_translate_element .goog-te-gadget-simple .goog-te-menu-value span:nth-child(5) {
-  display: none !important;
-}
-/* .VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
-  display:none !important;
-} */
