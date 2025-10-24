@@ -1,31 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Globe } from 'lucide-react';
 import GoogleTranslate from './GoogleTranslate';
+import { useTheme } from '../contexts/ThemeContext';
 
 const GoogleTranslateWrapper = () => {
+  const { theme } = useTheme();
+
   useEffect(() => {
     GoogleTranslate.init();
   }, []);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  
-  const handleClick = () => {
-    const dropdown = document.querySelector(".goog-te-gadget .goog-te-combo");
-    if(dropdown) {
-      dropdown.style.display = isDropdownVisible ? "none" : "block";
-      setIsDropdownVisible(!isDropdownVisible);
-    }
-  };
 
+  // The Google Translate widget will inject an iframe; allow it to render
+  // and apply theme-aware classes to the container so the menu matches the navbar.
   return (
-    <div
-      onClick={handleClick}
-      className=" px-3 py-3 border border-gray-600 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300"
-    >
-      <Globe className="w-5 h-5 text-white" />
-      <div
-        id="google_translate_element"
-        onClick={(e) => e.stopPropagation()}
-      ></div>
+    <div className={`relative inline-flex items-center px-1 py-1 rounded-md ${theme === 'dark' ? 'bg-transparent' : 'bg-transparent'}`}>
+      <Globe className={`w-5 h-5 ${theme === 'dark' ? 'text-slate-200' : 'text-slate-700'}`} />
+      <div id="google_translate_element" className={`ml-2`} />
     </div>
   );
 };
