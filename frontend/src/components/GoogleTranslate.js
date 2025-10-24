@@ -15,12 +15,41 @@ async function waitForTranslateCombo(timeoutMs = 5000) {
   });
 }
 
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
+function setCookie(name, value) {
+  try {
+    const expires = '; max-age=' + 60 * 60 * 24 * 365; // 1 year
+    const path = '; path=/';
+    // Set cookie for current host
+    document.cookie = `${name}=${encodeURIComponent(value)}${expires}${path}`;
+    // Also attempt setting on top-level domain (except localhost)
+    const host = window.location.hostname;
+    if (host && host.indexOf('.') !== -1 && host !== 'localhost') {
+      document.cookie = `${name}=${encodeURIComponent(value)}${expires}${path}; domain=.${host}`;
+    }
+  } catch (_) {
+    // ignore cookie errors
+  }
+}
+
+function getCookieLang() {
+  const val = getCookie('googtrans');
+  // expected format: "/auto/hi"
+  if (!val) return null;
+  const parts = val.split('/');
+  return parts[parts.length - 1] || null;
+}
+
 const GoogleTranslate = {
   init: () => {
     if (googleTranslateElementInit || googleTranslateScriptAppended) return;
-    const script = document.createElement('script');
+  const script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     script.async = true;
 
     window.googleTranslateElementInit = async () => {
@@ -33,11 +62,14 @@ const GoogleTranslate = {
           autoDisplay: false,
           multilanguagePage: true
         }, 'google_translate_element');
-
-        // Apply saved language if any (without cookies to avoid Chrome toolbar)
+        // If there is a saved language and the cookie doesn't match, set cookie and reload ONCE.
         const saved = localStorage.getItem(LS_KEY);
-        if (saved && saved !== 'en') {
-          await GoogleTranslate.setLanguage(saved);
+        const cookieLang = getCookieLang();
+        if (saved && saved !== 'en' && saved !== cookieLang && !sessionStorage.getItem('lawease-gt-init-reloaded')) {
+          setCookie('googtrans', `/auto/${saved}`);
+          sessionStorage.setItem('lawease-gt-init-reloaded', '1');
+          window.location.reload();
+          return;
         }
       } catch (e) {
         // no-op
@@ -48,14 +80,21 @@ const GoogleTranslate = {
   },
 
   setLanguage: async (code) => {
-    // Persist selection locally; do NOT set googtrans cookie to prevent toolbar
+    // Persist selection locally
     localStorage.setItem(LS_KEY, code);
-    // If the combo exists, set its value and dispatch change
+    // Robust path: set cookie and perform a single reload; banner stays hidden via CSS.
+    const cookieLang = getCookieLang();
+    if (cookieLang !== code) {
+      setCookie('googtrans', `/auto/${code}`);
+      sessionStorage.setItem('lawease-gt-user-reload', '1');
+      window.location.reload();
+      return;
+    }
+    // Fallback: try programmatic change without reload
     const combo = await waitForTranslateCombo();
     if (combo) {
       combo.value = code;
-      const event = new Event('change', { bubbles: true });
-      combo.dispatchEvent(event);
+      combo.dispatchEvent(new Event('change', { bubbles: true }));
     }
   },
 
