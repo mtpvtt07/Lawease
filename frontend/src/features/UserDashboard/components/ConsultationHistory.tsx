@@ -1,21 +1,17 @@
 import React from "react";
 
-const ConsultationHistory: React.FC = () => {
-  const consultations = [
-    {
-      name: "Adv. Priya Sharma",
-      license: "JoM Fia M 8n 115 2015",
-      status: "Completed",
-      color: "bg-green-100 text-green-700",
-    },
-    {
-      name: "Adv. Anil Gupta",
-      license: "JoM Fia M 8n 215 2012",
-      status: "Scheduled",
-      color: "bg-yellow-100 text-yellow-700",
-    },
-  ];
+type Consultation = {
+  name: string;
+  license: string;
+  status: string;
+  color: string; // for status badge
+};
 
+interface ConsultationHistoryProps {
+  consultations: Consultation[];
+}
+
+const ConsultationHistory: React.FC<ConsultationHistoryProps> = ({ consultations }) => {
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6 w-full md:w-1/3 animate-fade-in">
       <h3 className="text-lg font-semibold text-dark-text mb-4">

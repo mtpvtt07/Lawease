@@ -1,7 +1,16 @@
 import React from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 
-const UserDashboardPage: React.FC = () => {
+// You can use context, props, or global state here
+type UserProfile = {
+  name: string;
+};
+
+interface UserDashboardPageProps {
+  user: UserProfile;
+}
+
+const UserDashboardPage: React.FC<UserDashboardPageProps> = ({ user }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,7 +27,7 @@ const UserDashboardPage: React.FC = () => {
           My LawEase Dashboard
         </h1>
         <p className="text-gray-600 mb-8">
-          Welcome back, <span className="font-medium">Ramesh Kumar</span>.
+          Welcome back, <span className="font-medium">{user.name}</span>.
         </p>
 
         {/* Dashboard navigation cards */}

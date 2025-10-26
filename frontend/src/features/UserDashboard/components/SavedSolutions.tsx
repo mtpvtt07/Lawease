@@ -1,11 +1,15 @@
 import React from "react";
 
-const SavedSolutions: React.FC = () => {
-  const solutions = [
-    { title: "Land Dispute Resolution Act", category: "Property Law" },
-    { title: "FIR Filing Process", category: "Criminal Law" },
-  ];
+type Solution = {
+  title: string;
+  category: string;
+};
 
+interface SavedSolutionsProps {
+  solutions: Solution[];
+}
+
+const SavedSolutions: React.FC<SavedSolutionsProps> = ({ solutions }) => {
   return (
     <div className="bg-white shadow-lg rounded-2xl p-6 w-full md:w-1/3 animate-fade-in-slow">
       <h3 className="text-lg font-semibold text-dark-text mb-4">Saved Solutions</h3>
