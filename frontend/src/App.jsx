@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
@@ -12,7 +12,8 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import GoogleTranslate from "./components/GoogleTranslate";
 
 function App() {
-  const hideFooter = window.location.pathname === "/dashboard";
+  const location = useLocation();
+  const showFooter = location.pathname === "/"; // Footer only on Landing Page
 
   // Initialize Google Translate globally
   useEffect(() => {
@@ -50,8 +51,8 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
-        {/* Footer only on non-dashboard pages */}
-        {!hideFooter && <Footer />}
+        {/* Footer only on Landing Page */}
+        {showFooter && <Footer />}
       </LanguageProvider>
     </ThemeProvider>
   );

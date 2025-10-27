@@ -30,7 +30,6 @@ export default function Navbar({ mobileMenuOpen, setMobileMenuOpen, scrollY, dar
             {[
               { name: 'Home', href: '#home' },
               { name: 'Services', href: '#services' },
-              { name: 'Lawyers', href: '#lawyers' },
               { name: 'About', href: '#about' },
               { name: 'FAQ', href: '#faq' },
               { name: 'Contact', href: '#contact' }
