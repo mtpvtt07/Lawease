@@ -1,3 +1,59 @@
+```markdown
+# Frontend — LawEase
+
+This directory contains the React frontend built with Vite and Tailwind CSS. The app provides the user-facing UI for LawEase (landing pages, authentication, dashboard, and chatbot).
+
+## Quick start (frontend)
+
+Prerequisites
+- Node.js v18+ and npm
+
+Install dependencies
+
+```powershell
+cd frontend
+npm install
+```
+
+Run development server
+
+```powershell
+npm run dev
+```
+
+Build for production
+
+```powershell
+npm run build
+```
+
+Lint
+
+```powershell
+npm run lint
+```
+
+## Environment variables
+
+Create a `frontend/.env` file and add required Vite environment variables (example):
+
+```
+VITE_GEMINI_API_KEY=your_google_genai_api_key
+```
+
+Security note: Variables prefixed with `VITE_` are embedded in the client bundle and therefore public. Keep secrets on the backend.
+
+## Scripts
+- `dev` — start Vite dev server
+- `build` — production build
+- `preview` — preview production build
+- `lint` — run ESLint
+
+## Notes
+- The theme is controlled by `ThemeContext` and CSS variables in `src/index.css`. The footer uses those variables to match theme colors.
+- If you add new environment variables, restart the dev server to pick them up.
+
+```
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

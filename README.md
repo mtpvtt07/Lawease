@@ -70,56 +70,156 @@ npm install
 npm run dev
 ```
 
-3. Backend (if present)
+# LawEase
+
+LawEase is an open-source platform that helps make legal information accessible, understandable, and actionable — with a focus on underserved and rural communities in India.
+
+This repository houses the frontend (React + Vite) and the backend (Node.js + Express) used to power the platform. The project provides categorized legal content, multilingual support, video summaries, and connections to legal professionals.
+
+## Table of Contents
+- Project overview
+- Features
+- Architecture & tech stack
+- Quick start (local development)
+- Environment variables
+- Folder structure
+- Testing & linting
+- Contributing
+- License & Code of Conduct
+- Maintainers & contact
+
+## Project overview
+
+LawEase organizes legal topics into discoverable categories, delivers concise legal explanations in plain language, supports multiple regional languages, and connects users to verified legal professionals.
+
+The aim is to reduce friction for users who lack easy access to legal advice and to provide a trustworthy first-stop resource for common legal questions.
+
+## Features
+
+- Categorized legal topics and subtopics for easy discovery
+- Concise legal explanations in simple English (with regional language support)
+- Short video summaries for select topics
+- Lawyer / legal-firm directory and contact flow
+- OTP-based authentication and user dashboard
+- Chatbot helpers and FAQs
+
+## Architecture & tech stack
+
+- Frontend: React (Vite)
+- Backend: Node.js + Express
+- Database: MongoDB (Mongoose)
+- Auth: JWT / OTP
+- Styling: Tailwind CSS + custom CSS variables
+
+## Quick start (development)
+
+Prerequisites
+- Node.js v18+ and npm
+- MongoDB (local or hosted)
+
+Clone the repository
+
+```powershell
+git clone https://github.com/echoAbhinav/Laweasefork.git
+cd LaweaseFork
+```
+
+Start frontend
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Start backend (optional)
 
 ```powershell
 cd backend
 npm install
-npm start
+npm run dev
 ```
 
-Open the frontend URL printed by Vite (usually http://localhost:5173).
+Open the frontend URL printed by Vite (default: http://localhost:5173 or another port if occupied).
 
-## Project structure (important folders)
-- `frontend/` — React app (Vite). Key files:
-  - `src/main.jsx` — app entry
-  - `src/App.jsx` — root component
-  - `src/pages/` — page components (Landing, Login, Signup, Main)
-  - `src/components/` — reusable UI pieces (Navbar, HeroSection, Dashboard widgets)
+## Environment variables
 
-Other expected folders (if present):
-- `backend/` — Node/Express server
-- `scripts/`, `docs/`, or `infra/` — optional support files
+Create `.env` files in the frontend and backend directories (do not commit them). Example keys:
 
-## Development notes
-- Keep UI components small and focused.
-- Store API URL and secrets in environment variables (use `.env` locally; never commit secrets).
-- Follow the existing linting rules in `frontend/eslint.config.js`.
-- Use the existing `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` for contribution rules.
+Frontend (`frontend/.env`)
+- VITE_GEMINI_API_KEY=your_google_genai_api_key
+
+Backend (`backend/.env`)
+- PORT=5000
+- MONGO_URI=your_mongodb_connection_string
+- JWT_SECRET=your_jwt_secret
+- FAST2SMS_API_KEY=your_fast2sms_key
+
+Security note: Vite variables beginning with `VITE_` are embedded in the client bundle and are publicly visible. Do not store private secrets in the frontend; route private API calls through the backend.
+
+## Folder structure
+
+High-level layout:
+
+```
+.
+├── frontend/        # React + Vite app
+├── backend/         # Node.js + Express API
+├── README.md        # This file
+├── CONTRIBUTING.md
+└── CODE_OF_CONDUCT.md
+```
+
+Frontend key files
+- `src/App.jsx` — router and global layout
+- `src/pages/` — page-level components
+- `src/components/` — reusable UI components
+
+Backend key files
+- `src/app.js` — express app and middleware
+- `src/index.js` — server entry point
+- `src/controllers/`, `src/models/`, `src/routes/` — API implementation
+
+## Testing & linting
+
+- Frontend scripts are in `frontend/package.json` (dev, build, lint, preview).
+- Backend scripts are in `backend/package.json` (start, dev).
+
+Run linting
+
+```powershell
+cd frontend
+npm run lint
+```
+
+Run production build
+
+```powershell
+cd frontend
+npm run build
+```
 
 ## Contributing
-Contributions are very welcome. A suggested workflow:
 
-1. Open an issue to discuss larger changes.
-2. Create a branch: `git checkout -b feat/short-description`.
-3. Run tests / lint and add unit tests for new logic where appropriate.
-4. Open a pull request describing the change.
+Contributions are welcome. Recommended workflow:
 
-See `CONTRIBUTING.md` for more detail.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feat/short-description`
+3. Implement changes, add tests where applicable
+4. Run lint/build locally
+5. Open a pull request against `mtpvtt07/Lawease:main` with a clear description
 
-## License & Code of conduct
-This repository includes `CODE_OF_CONDUCT.md` and `CONTRIBUTING.md`. Add a LICENSE file if one is missing.
+Please follow the `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` included in the repository.
 
-## Contact
-If you have questions or need help, open an issue on GitHub or reach out to the maintainers through the repository.
+## License & Code of Conduct
+
+This project includes `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md` in the repo. Add or review `LICENSE` if required by your organization.
+
+## Maintainers & contact
+
+If you need help, open an issue or contact the maintainers via the repository.
 
 ---
 
-Thanks for improving access to legal help. If you want, I can also:
-- Add a short screenshot or GIF to the README
-- Add a minimal `frontend/README.md` with frontend-specific commands
-- Create a small dev script to start frontend + backend together
-
-If you'd like any of those, tell me which and I'll add them.
-Open the frontend URL printed by Vite (usually http://localhost:5173).
+Thank you for contributing to LawEase — improving access to legal help makes a tangible difference in people’s lives.
 
