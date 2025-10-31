@@ -38,205 +38,86 @@ LawEase Backend provides a secure, scalable RESTful API that powers the LawEase 
 | **Express.js** | Web framework |
 | **MongoDB** | Database |
 | **Mongoose** | ODM for MongoDB |
-| **dotenv** | Environment variable management |
-| **cors** | Cross-origin resource sharing |
-| **nodemon** | Development auto-restart |
+````markdown
+# ⚖️ LawEase — Backend
 
----
+Backend API for LawEase. This service provides authentication (OTP), user management, and APIs consumed by the frontend.
 
-## 📁 Project Structure
+## Quick start
 
-```
-backend/
-├── public/
-├── src/
-│   ├── controllers/
-│   │   ├── user.controller.js # Email/password user registration, login, and reset
-│   │   └── otp.controller.js # OTP send, verify, and login logic
-│   ├── db/
-│   │   └── index.js # MongoDB connection
-│   ├── middleware/
-│   │   ├── auth.middleware.js # JWT authentication middleware
-│   │   └── user.middleware.js # Optional user validations
-│   ├── models/
-│   │   ├── user.model.js # User schema
-│   │   └── otp.model.js # OTP schema
-│   ├── routes/
-│   │   ├── user.routes.js # Email/password user routes
-│   │   └── otp.routes.js # OTP authentication routes
-│   ├── utils/
-│   │   ├── ApiErrors.js # Custom error class
-│   │   ├── ApiResponse.js # Unified response class
-│   │   ├── asyncHandler.js # Async error wrapper
-│   │   ├── isValidMobile.js # Mobile number validation helper
-│   │   ├── otpGenerator.js # OTP generator utility
-│   │   ├── sendSMS.js # Fast2SMS integration
-│   │   └── sendEmail.js # Brevo email integration
-│   ├── app.js # Express app setup and routes
-│   └── index.js # Server entry point
-├── .env
-├── .gitignore
-├── package.json
-└── README.md
-```
+Install dependencies
 
----
-
-## ⚙️ Installation & Setup
-
-### 1️⃣ Install Dependencies
-```bash
+```powershell
+cd backend
 npm install
 ```
 
-### 2️⃣ Environment Variables
-
-Create a `.env` file in the root directory:
+Create a `.env` file (example values)
 
 ```env
-# Server port locally running
 PORT=5000
-
-# JWT secret key
-JWT_SECRET=your_jwt_secret
-
-# MongoDB connection string
-MONGO_URI=your_mongodb_connection_string
-
-# Fast2SMS API key for sending OTPs
-FAST2SMS_API_KEY=your_fast2sms_api_key
-
-# CORS origin settings (allow frontend access)
-CORS_ORIGIN=http://localhost:3000
-
-# Brevo SMTP settings for sending emails
-SMTP_HOST=smtp-relay.brevo.com
+MONGO_URI=mongodb://localhost:27017/lawease
+JWT_SECRET=replace_with_secure_secret
+FAST2SMS_API_KEY=replace_with_key
+SMTP_HOST=smtp.example.com
 SMTP_PORT=587
-SMTP_USER=akashgite550@gmail.com
-SMTP_PASS=your_brevo_smtp_password_or_api_key
-
-
+SMTP_USER=you@example.com
+SMTP_PASS=securepassword
 ```
 
-### 3️⃣ Running the Server
+Run in development
 
-**Development mode:**
-```bash
+```powershell
 npm run dev
 ```
 
-**Production mode:**
-```bash
+Run in production
+
+```powershell
 npm start
 ```
 
-Server will run at: `http://localhost:5000`
+Server will run on http://localhost:5000 by default.
 
----
+## Project structure (high level)
 
-## 📂 Folder Breakdown
+```
+backend/
+├── public/                # static files
+├── src/
+│   ├── controllers/       # request handlers
+│   ├── db/                # db connection
+│   ├── middleware/        # auth and validation
+│   ├── models/            # mongoose models
+│   ├── routes/            # express routes
+│   └── utils/             # helpers (ApiErrors, ApiResponse, sms/email helpers)
+├── package.json
+└── README.Md
+```
 
-### **controllers/**
-Contains business logic and request handlers for API endpoints.
-- `user.controller.js` - Handles email/password registration, login, password reset, and code verification.
-- `otp.controller.js`  - Handles sending OTP, verifying OTP, and login authentication.
+## Environment variables
 
-### **db/**
-Database connection and configuration.
-- `index.js` - MongoDB connection setup
+- `PORT` — server port
+- `MONGO_URI` — MongoDB connection string
+- `JWT_SECRET` — secret used to sign JWT tokens
+- `FAST2SMS_API_KEY` — (optional) SMS provider key
+- SMTP settings for email (optional)
 
-### **middleware/**
-Custom middleware for authentication, validation, etc.
-- `auth.middleware.js` - Verifies JWT tokens for protected routes.
+## API (examples)
 
-### **models/**
-Mongoose schemas and models.
-- `user.model.js` - User schema with email/password, mobile, role, and preferences.
-- `otp.model.js` - Defines OTP structure with expiry time.
+Common routes (subject to change):
 
-### **routes/**
-API route definitions linked to controllers.
-- `user.route.js` - User-related routes
-- `otp.routes.js` - All routes related to authentication and OTP flow.
+- `POST /api/v1/otp/send` — send OTP
+- `POST /api/v1/otp/verify` — verify OTP
+- `POST /api/v1/user/register` — register with email/password
+- `POST /api/v1/user/login` — login with credentials
 
-### **utils/**
-Reusable helper functions and utilities.
-- `otp.routes.js`   - All routes related to authentication and OTP flow.
-- `ApiErrors.js`    - Centralized error handling.
-- `ApiResponse.js`  - Consistent API response structure.
-- `asyncHandler.js` - Wraps async route handlers.
-- `isValidMobile.js`- Validates Indian mobile numbers.
-- `otpGenerator.js` - Generates random 6-digit OTPs.
-- `sendSMS.js`      - Sends OTP messages using Fast2SMS
-- `sendEmail.js`    - Sends verification/reset emails via Brevo.
-### **app.js**
-Express application setup, middleware configuration, and route mounting.
+Use a tool like Postman to explore the API during development.
 
-### **index.js**
-Server entry point that starts the application.
+## Contributing
 
----
+Follow the same contributing workflow as the repository: fork → branch → PR. Use the `asyncHandler` and `ApiErrors` utilities for consistent error handling.
 
-## 🚀 Features Implemented
+## License
 
-- ✅ OTP-based user registration
-- ✅ OTP login authentication
-- ✅ JWT token generation for secure access
-- ✅ Error and response handling via utility classes
-- ✅ Modular folder structure
-- ✅ Auth middleware for protected routes
-- ✅ Email/password registration and login
-- ✅ Password reset via email verification code
-
----
-
-## 🔮 Planned Features
-- 🔄 Google / Email login integration
-- 🔄 Role-based access (User, Lawyer, Admin)
-- 🔄 Multi-language support
-- 🔄 User and Lawyer profile dashboards
-- 🔄 Secure document management
-- 🔄 Lawyer–User chat system
-
-## 📝 API Documentation
-
-| Endpoint                        | Method | Description                           |
-| ------------------------------- | ------ | ------------------------------------- |
-| `/api/v1/otp/send`              | POST   | Send OTP to mobile number             |
-| `/api/v1/otp/verify`            | POST   | Verify OTP & create user account      |
-| `/api/v1/otp/login`             | POST   | Verify OTP for login                  |
-| `/api/v1/user/register`         | POST   | Register user with email & password   |
-| `/api/v1/user/login`            | POST   | Login user with email & password      |
-| `/api/v1/user/forgot-password`  | POST   | Request password reset code via email |
-| `/api/v1/user/verify-reset-code`| POST   | Verify password reset code            |
-| `/api/v1/user/reset-password`   | POST   | Reset password using verified code    |
-| `/api/v1/protected`             | GET    | Example of protected route using JWT middleware |
-
----
-
-## 🤝 Contributing
-
-We welcome contributions from everyone! Please follow the standard fork → branch → pull request workflow.
-
-🧩 Contribution Guidelines:
-
--   For all asynchronous operations, use the predefined asyncHandler() wrapper function for consistent and centralized error handling.
--   When throwing errors, always use the ApiErrors class for better error structure and readability.
--   When sending API responses, use the ApiResponse class to ensure consistency and cleaner code.
--   Follow the modular architecture — avoid repeating logic and keep code reusable across the application.
--   This ensures maintainability, scalability, and consistent behavior throughout the project.
-
----
-
-## 📄 License
--   `Copyright (c) 2025 LawEase`
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+This project is licensed under the terms included in the repository. See `LICENSE` if present.
