@@ -10,6 +10,8 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import GoogleTranslate from "./components/GoogleTranslate";
+import EditProfilePage from "./features/UserDashboard/components/EditProfilePage";
+import React, { useState } from "react";
 
 function App() {
   const location = useLocation();
@@ -23,6 +25,36 @@ function App() {
       GoogleTranslate.cleanup();
     };
   }, []);
+
+  // *** USE STATE, NOT CONSTANT ***
+  const [user, setUser] = useState({
+    name: "Ramesh Kumar",
+    role: "LawEase User",
+    email: "jmaille@hosconer.com",
+    phone: "320872452524",
+    location: "Alwar, Rajasthan",
+    avatarUrl: undefined,
+  });
+
+  const mockSolutions = [
+    { title: "Land Dispute Resolution Act", category: "Property Law" },
+    { title: "FIR Filing Process", category: "Criminal Law" },
+  ];
+
+  const mockConsultations = [
+    {
+      name: "Adv. Priya Sharma",
+      license: "JoM Fia M 8n 115 2015",
+      status: "Completed",
+      color: "bg-green-100 text-green-700",
+    },
+    {
+      name: "Adv. Anil Gupta",
+      license: "JoM Fia M 8n 215 2012",
+      status: "Scheduled",
+      color: "bg-yellow-100 text-yellow-700",
+    },
+  ];
 
   return (
     <ThemeProvider>
@@ -57,5 +89,4 @@ function App() {
     </ThemeProvider>
   );
 }
-
 export default App;
